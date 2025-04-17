@@ -1,26 +1,48 @@
 "use client";
 
+import { PasswordInput } from "@/components/ui/password-input";
 import { Provider } from "@/components/ui/provider";
+import { useAuth } from "@/contexts/AuthContext";
+import { loginSchema } from "@/schemas/auth.schemas";
+import { LoginUserData } from "@/types/auth";
 import {
   Center,
   Field,
   Fieldset,
   Highlight,
-  Input,
   Separator,
   Text,
   Box,
   Button,
+  Input,
 } from "@chakra-ui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
+
+  const { loginUser } = useAuth();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onLogin = (data: LoginUserData) => {
+    console.log(data);
+    loginUser(data);
+  };
+
   return (
     <Provider>
-      <Center minH="100vh" bg="gray.100">
+      <Center minH="100vh" bg="gray.100" as="form" onSubmit={handleSubmit(onLogin)}>
         <Box
           bg="white"
-          p={{ base: "6", sm: "8", md: "10" }} // Espaçamento ajustado para diferentes tamanhos de tela
+          p={{ base: "6", sm: "8", md: "10" }} 
           borderRadius="xl"
           boxShadow="xl"
           w="100%"
@@ -36,7 +58,7 @@ export default function Login() {
                 fontWeight="bold"
                 color="teal.600"
               >
-                PierretHome360
+                PierretHomeHub
               </Fieldset.Legend>
             </Box>
 
@@ -44,18 +66,20 @@ export default function Login() {
               <Box mb="4">
                 <Field.Root>
                   <Field.Label color="gray.700">Email:</Field.Label>
-                  <Input placeholder="Informe seu e-mail..." />
+                  <Input {...register("email")} placeholder="Informe seu e-mail..." color="gray.600" />
+                  <Text color="red.500" fontSize="14px">{errors.email?.message}</Text>
                 </Field.Root>
               </Box>
 
               <Box mb="6">
                 <Field.Root>
                   <Field.Label color="gray.700">Senha:</Field.Label>
-                  <Input placeholder="Informe sua senha..." type="password" />
+                  <PasswordInput {...register("password")} placeholder="Informe sua senha..." color="gray.600" />
+                  <Text color="red.500" fontSize="14px">{errors.password?.message}</Text>
                 </Field.Root>
               </Box>
 
-              <Button colorScheme="teal" bg="teal.600" _hover={{ bg: "teal.500" }} w="full" h="12">
+              <Button type="submit" colorScheme="teal" bg="teal.600" _hover={{ bg: "teal.500" }} w="full" h="12">
                 Entrar
               </Button>
             </Fieldset.Content>

@@ -1,5 +1,5 @@
 import api from "@/services/api";
-import { LoginUserData, RegisterUserData } from "./auth";
+import { LoginUserData, RegisterUserData } from "@/types/auth";
 
 
 export const registerUserService = async(data: RegisterUserData) => {
