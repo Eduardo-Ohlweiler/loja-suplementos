@@ -1,106 +1,73 @@
-import { Button, Flex, Group, Menu, Portal } from "@chakra-ui/react";
+import { Button, Flex, Group, Heading, Input } from "@chakra-ui/react";
 import Link from "next/link";
+import { PiMagnifyingGlassBold } from "react-icons/pi";
+import { IoMdPerson } from "react-icons/io";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
-    return (
-        <Flex as = "header" align = "center" justify = "center">
-            <Group grow justify = "space-between">
-                <Menu.Root>
-                    <Menu.Trigger asChild>
-                        <Button variant="outline" size="2xl" w="400px" backgroundColor="red.600">
-                            Suplementos
-                        </Button>
-                    </Menu.Trigger>
-                    <Portal>
-                        <Menu.Positioner>
-                            <Menu.Content>
-                                <Menu.ItemGroup>
-                                    <Menu.ItemGroupLabel>COMPRE POR OBJETIVO</Menu.ItemGroupLabel>
-                                    <Menu.Item value="massa">
-                                        <Link href = "/">Quero ganhar massa</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="energia">
-                                        <Link href = "/">Quero mais energia</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="emagrecer">
-                                        <Link href = "/">Quero emagrecer</Link>
-                                    </Menu.Item>
-                                </Menu.ItemGroup>
-                                <Menu.ItemGroup>
-                                    <Menu.ItemGroupLabel>AMINOÁCIDOS</Menu.ItemGroupLabel>
-                                    <Menu.Item value="massa">
-                                        <Link href = "/">BCAAs e Aminos</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="energia">
-                                        <Link href = "/">Creatinas</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="emagrecer">
-                                        <Link href = "/">Glutaminas</Link>
-                                    </Menu.Item>
-                                </Menu.ItemGroup>
-                                <Menu.ItemGroup>
-                                    <Menu.ItemGroupLabel>ENERGIA E PERCA DE PESO</Menu.ItemGroupLabel>
-                                    <Menu.Item value="diureticos">
-                                        <Link href = "/">Diuréticos</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="l_carnitinas">
-                                        <Link href = "/">L-Carnitinas</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="pre_treino">
-                                        <Link href = "/">Pré-Treinos</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="termogenicos">
-                                        <Link href = "/">Termogênicos</Link>
-                                    </Menu.Item>
-                                </Menu.ItemGroup>
-                                <Menu.ItemGroup>
-                                    <Menu.ItemGroupLabel>MASSA MUSCULAR</Menu.ItemGroupLabel>
-                                    <Menu.Item value="hipercaloricos">
-                                        <Link href = "/">Hipercalóricos</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="vitaminas_diversas">
-                                        <Link href = "/">Vitaminas diversas</Link>
-                                    </Menu.Item>
-                                </Menu.ItemGroup>
-                            </Menu.Content>
+  return (
+    <Flex
+      as="header"
+      align="center"
+      justify="space-between"
+      px={16}
+      py={4}
+      bg="white"
+      boxShadow="md"
+      wrap="wrap"
+    >
+      <Heading as="h1" size="lg" color="red.600" mr={8}>
+        Mika Suplementos
+      </Heading>
 
-                            <Menu.Content>
-                                <Menu.ItemGroup>
-                                    <Menu.ItemGroupLabel>PROTEÍNAS</Menu.ItemGroupLabel>
-                                    <Menu.Item value="albumina">
-                                        <Link href = "/">Albuminas</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="whey_concentrado">
-                                        <Link href = "/">Whey Concentrado</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="whhey_hidrolizado">
-                                        <Link href = "/">Whey Hidrolizado</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="whey_isolado">
-                                        <Link href = "/">Whey Isolado</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="whey_3w">
-                                        <Link href = "/">Whey 3W</Link>
-                                    </Menu.Item>
-                                </Menu.ItemGroup>
-                                
-                                <Menu.ItemGroup>
-                                    <Menu.ItemGroupLabel>VITAMINAS</Menu.ItemGroupLabel>
-                                    <Menu.Item value="multivitaminicos">
-                                        <Link href = "/">Multivitamínicos</Link>
-                                    </Menu.Item>
-                                    <Menu.Item value="vitaminas_diversas">
-                                        <Link href = "/">Vitaminas diversas</Link>
-                                    </Menu.Item>
-                                </Menu.ItemGroup>
-                            </Menu.Content>
-                        </Menu.Positioner>
-                    </Portal>
-                </Menu.Root>
-                
-            </Group>
-        </Flex>
-    );
+      <Flex flex="1" justify="center" mx={8}>
+        <Group attached w="100%" maxW="600px">
+          <Input
+            flex="1"
+            placeholder="Buscar produto"
+            borderColor="red.500"
+            _hover={{ borderColor: "red.600" }}
+            _focus={{ borderColor: "red.600", boxShadow: "0 0 0 1px #e53e3e" }}
+            size="md"
+            height="45px"
+          />
+          <Button
+            bg="red.500"
+            color="white"
+            _hover={{ bg: "red.600" }}
+            border="1px solid"
+            borderColor="red.600"
+            height="45px"
+          >
+            <PiMagnifyingGlassBold />
+          </Button>
+        </Group>
+      </Flex>
+
+      <Flex align="center" gap={4}>
+        <Button
+          variant="solid"
+          bg="red.500"
+          color="white"
+          _hover={{ bg: "red.600" }}
+        >
+          <Link href="/login">
+            <IoMdPerson />
+          </Link>
+        </Button>
+        <Button
+          variant="solid"
+          bg="red.500"
+          color="white"
+          _hover={{ bg: "red.600" }}
+        >
+          <Link href="/">
+            <FaShoppingCart />
+          </Link>
+        </Button>
+      </Flex>
+    </Flex>
+  );
 };
 
 export default Header;

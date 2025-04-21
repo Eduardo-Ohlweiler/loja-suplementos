@@ -58,7 +58,7 @@ export default function Login() {
                 fontWeight="bold"
                 color="teal.600"
               >
-                PierretHomeHub
+                Mika Suplementos
               </Fieldset.Legend>
             </Box>
 
