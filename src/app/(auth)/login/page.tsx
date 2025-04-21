@@ -56,7 +56,7 @@ export default function Login() {
               <Fieldset.Legend
                 fontSize={{ base: "xl", md: "2xl" }}
                 fontWeight="bold"
-                color="teal.600"
+                color="red.600"
               >
                 Mika Suplementos
               </Fieldset.Legend>
@@ -79,21 +79,31 @@ export default function Login() {
                 </Field.Root>
               </Box>
 
-              <Button type="submit" colorScheme="teal" bg="teal.600" _hover={{ bg: "teal.500" }} w="full" h="12">
+              <Button
+                type="submit"
+                colorScheme="red"
+                bg="red.600"
+                _hover={{ bg: "red.500" }}
+                w="full"
+                h="12"
+                color="white"
+                fontSize="lg"
+              >
                 Entrar
               </Button>
+
             </Fieldset.Content>
           </Fieldset.Root>
 
           <Separator my="6" />
 
-          <Text color="gray.700" fontSize={{ base: "sm", sm: "md" }} textAlign="center">
+          <Text color="gray.600" fontSize={{ base: "sm", sm: "md" }} textAlign="center">
             Não tem uma conta?{" "}
             <Link href="/register" >
               <Highlight
                 query="Registre-se"
                 styles={{
-                  color: "#00b3b9",
+                  color: "#ff2b2b",
                   fontWeight: "medium",
                   cursor: "pointer",
                 }}

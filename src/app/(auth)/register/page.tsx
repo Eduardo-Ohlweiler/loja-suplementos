@@ -37,7 +37,7 @@ export default function Register() {
                 >
                     <Fieldset.Root>
                         <Stack>
-                            <Fieldset.Legend fontSize="2xl" fontWeight="bold" textAlign="center" color="teal.500">
+                            <Fieldset.Legend fontSize="2xl" fontWeight="bold" textAlign="center" color="red.500">
                                 Bem-vindo!
                             </Fieldset.Legend>
                             <Fieldset.Legend fontSize="lg" textAlign="center" color="gray.600">
@@ -75,12 +75,14 @@ export default function Register() {
 
                         <Button
                             type="submit"
-                            colorScheme="teal" bg="teal.600"
-                            _hover={{ bg: "teal.500" }}
+                            colorScheme="teal"
+                            bg="red.600"
+                            _hover={{ bg: "red.500" }}
+                            color="white"
+                            fontSize="lg"
                         >
-                            Cadastrar
+                        Cadastrar
                         </Button>
-
                         <Separator my={6} />
 
                         <Text textAlign="center" color="gray.700">
@@ -90,7 +92,7 @@ export default function Register() {
                                 <Highlight
                                 query="Faça login"
                                 styles={{
-                                    color: "#00b3b9",
+                                    color: "#ff2b2b",
                                     fontWeight: "medium",
                                     cursor: "pointer",
                                 }}
