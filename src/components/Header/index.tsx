@@ -4,6 +4,7 @@ import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { IoMdPerson } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
+import { menu_header } from "@/utils/button/menu_header";
 
 const Header = () => {
   return (
@@ -33,92 +34,26 @@ const Header = () => {
         </Menu.Trigger>
         <Portal>
             <Menu.Positioner>
-                <Menu.Content display="flex" flexDirection="column" gap="1"  backgroundColor={"white"} color={"black"} >
-                    <Menu.ItemGroup >
-                        <Menu.ItemGroupLabel fontSize={"12px"}>COMPRE POR OBJETIVO</Menu.ItemGroupLabel>
-                        <Menu.Item value="massa" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Quero ganhar massa</Link>
-                        </Menu.Item>
-                        <Menu.Item value="energia" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Quero mais energia</Link>
-                        </Menu.Item>
-                        <Menu.Item value="emagrecer" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Quero emagrecer</Link>
-                        </Menu.Item>
-                    </Menu.ItemGroup>
-                    <Menu.ItemGroup>
-                        <Menu.ItemGroupLabel  fontSize={"12px"}>AMINOÁCIDOS</Menu.ItemGroupLabel>
-                        <Menu.Item value="massa" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">BCAAs e Aminos</Link>
-                        </Menu.Item>
-                        <Menu.Item value="energia" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Creatinas</Link>
-                        </Menu.Item>
-                        <Menu.Item value="emagrecer" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Glutaminas</Link>
-                        </Menu.Item>
-                    </Menu.ItemGroup>
-                    <Menu.ItemGroup>
-                        <Menu.ItemGroupLabel fontSize={"12px"}>ENERGIA E PERCA DE PESO</Menu.ItemGroupLabel>
-                        <Menu.Item value="diureticos" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Diuréticos</Link>
-                        </Menu.Item>
-                        <Menu.Item value="l_carnitinas" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">L-Carnitinas</Link>
-                        </Menu.Item>
-                        <Menu.Item value="pre_treino" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Pré-Treinos</Link>
-                        </Menu.Item>
-                        <Menu.Item value="termogenicos" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Termogênicos</Link>
-                        </Menu.Item>
-                    </Menu.ItemGroup>
-                    <Menu.ItemGroup>
-                        <Menu.ItemGroupLabel fontSize={"12px"}>MASSA MUSCULAR</Menu.ItemGroupLabel>
-                        <Menu.Item value="hipercaloricos" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Hipercalóricos</Link>
-                        </Menu.Item>
-                        <Menu.Item borderRadius="0" value="vitaminas_diversas" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Vitaminas diversas</Link>
-                        </Menu.Item>
-                    </Menu.ItemGroup>
-                    <Menu.ItemGroup>
-                        <Menu.ItemGroupLabel fontSize={"12px"}>PROTEÍNAS</Menu.ItemGroupLabel>
-                        <Menu.Item value="albumina" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Albuminas</Link>
-                        </Menu.Item>
-                        <Menu.Item value="whey_concentrado" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Whey Concentrado</Link>
-                        </Menu.Item>
-                        <Menu.Item value="whhey_hidrolizado" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Whey Hidrolizado</Link>
-                        </Menu.Item>
-                        <Menu.Item value="whey_isolado" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Whey Isolado</Link>
-                        </Menu.Item>
-                        <Menu.Item value="whey_3w" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Whey 3W</Link>
-                        </Menu.Item>
-                    </Menu.ItemGroup>
-                    
-                    <Menu.ItemGroup>
-                        <Menu.ItemGroupLabel fontSize={"12px"}>VITAMINAS</Menu.ItemGroupLabel>
-                        <Menu.Item value="multivitaminicos" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Multivitamínicos</Link>
-                        </Menu.Item>
-                        <Menu.Item value="vitaminas_diversas" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Vitaminas diversas</Link>
-                        </Menu.Item>
-                    </Menu.ItemGroup>
-                    <Menu.ItemGroup>
-                        <Menu.ItemGroupLabel fontSize={"12px"}>LINHA GOURMET</Menu.ItemGroupLabel>
-                        <Menu.Item value="barras_de_proteina" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Barras de protína</Link>
-                        </Menu.Item>
-                        <Menu.Item value="pastas_de_amendoim" fontSize={"12px"} color={"black"}>
-                            <Link href = "/">Pastas de amendoim</Link>
-                        </Menu.Item>
-                    </Menu.ItemGroup>
+                <Menu.Content display="flex" 
+                              flexDirection="column" 
+                              gap="1"  
+                              backgroundColor={"white"} 
+                              color={"black"} 
+                >
+                  {
+                    menu_header.map((item, index) => (
+                      <Menu.ItemGroup >
+                        <Menu.ItemGroupLabel fontSize={"14px"}>{item.title}</Menu.ItemGroupLabel>
+                        {
+                          item.links.map((link, index) => (
+                            <Menu.Item value={link.value} fontSize={"14px"} color={"black"}>
+                                <Link href = {link.link}>{link.texto}</Link>
+                            </Menu.Item>
+                          ))
+                        }
+                      </Menu.ItemGroup>
+                    ))
+                  }
                 </Menu.Content>
             </Menu.Positioner>
         </Portal>
@@ -130,7 +65,7 @@ const Header = () => {
               fontSize={{ base: "xl", md: "2xl", lg: "3xl", xl: "4xl" }} 
               fontWeight="bold" 
       >
-        Mika <br /> Suplementos
+        <Link href="/">Mika <br />&nbsp;&nbsp;&nbsp;&nbsp; Suplementos</Link>
       </Heading>
 
       <Flex flex="1" justify="center" mx={8}>
