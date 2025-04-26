@@ -1,5 +1,5 @@
 "use client";
-
+import logo_redondo from "@/utils/images/logo_redondo.jpeg";
 import { PasswordInput } from "@/components/ui/password-input";
 import { Provider } from "@/components/ui/provider";
 import { useAuth } from "@/contexts/AuthContext";
@@ -19,6 +19,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import Image from "next/image";
 
 export default function Login() {
 
@@ -56,12 +57,14 @@ export default function Login() {
               <Fieldset.Legend
                 fontSize={{ base: "xl", md: "2xl" }}
                 fontWeight="bold"
-                color="red.600"
+                color="red.700"
               >
                 Mika Suplementos
               </Fieldset.Legend>
             </Box>
-
+            <Box display="flex" justifyContent="center" mb="4">
+                <Image src={logo_redondo} alt="Logo da loja" width={150} height={150} />
+              </Box>
             <Fieldset.Content>
               <Box mb="4">
                 <Field.Root>
@@ -82,7 +85,7 @@ export default function Login() {
               <Button
                 type="submit"
                 colorScheme="red"
-                bg="red.600"
+                bg="red.700"
                 _hover={{ bg: "red.500" }}
                 w="full"
                 h="12"
@@ -103,7 +106,7 @@ export default function Login() {
               <Highlight
                 query="Registre-se"
                 styles={{
-                  color: "#ff2b2b",
+                  color: "red.700",
                   fontWeight: "medium",
                   cursor: "pointer",
                 }}

@@ -26,7 +26,8 @@ const HeaderBottons = () => {
                                     h={{ base: "40px", md: "50px", lg: "60px", xl: "70px"}} 
                                     border="none" 
                                     fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}
-                                    backgroundColor="red.600"
+                                    backgroundColor="red.700"
+                                    borderRadius={"none"}
                             >
                             <IoMenu />
                             Suplementos
@@ -46,11 +47,11 @@ const HeaderBottons = () => {
                                 >
                                    {
                                     menu_header.map((item, index) => (
-                                        <Menu.ItemGroup >
+                                        <Menu.ItemGroup key={index} >
                                         <Menu.ItemGroupLabel>{item.title}</Menu.ItemGroupLabel>
                                         {
                                             item.links?.map((link, index) => (
-                                                <Menu.Item value={link.value} color={"black"} fontSize={"14px"}>
+                                                <Menu.Item key={index + link.value} value={link.value} color={"black"} fontSize={"14px"}>
                                                     <Link href = {link.link} >{link.texto}</Link>
                                                 </Menu.Item>
                                             ))

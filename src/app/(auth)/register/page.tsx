@@ -6,7 +6,6 @@ import { useAuth } from "@/contexts/AuthContext";
 import { registerSchema } from "@/schemas/auth.schemas";
 import { UserFormData } from "@/types/auth";
 import { Button, Center, Field, Fieldset, Input, Separator, Stack, Text, Box, Highlight } from "@chakra-ui/react";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -37,7 +36,7 @@ export default function Register() {
                 >
                     <Fieldset.Root>
                         <Stack>
-                            <Fieldset.Legend fontSize="2xl" fontWeight="bold" textAlign="center" color="red.500">
+                            <Fieldset.Legend fontSize="2xl" fontWeight="bold" textAlign="center" color="red.700">
                                 Bem-vindo!
                             </Fieldset.Legend>
                             <Fieldset.Legend fontSize="lg" textAlign="center" color="gray.600">
@@ -76,7 +75,7 @@ export default function Register() {
                         <Button
                             type="submit"
                             colorScheme="teal"
-                            bg="red.600"
+                            bg="red.700"
                             _hover={{ bg: "red.500" }}
                             color="white"
                             fontSize="lg"
@@ -92,7 +91,7 @@ export default function Register() {
                                 <Highlight
                                 query="Faça login"
                                 styles={{
-                                    color: "#ff2b2b",
+                                    color: "red.700",
                                     fontWeight: "medium",
                                     cursor: "pointer",
                                 }}
