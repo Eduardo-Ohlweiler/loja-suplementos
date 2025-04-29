@@ -2,7 +2,8 @@ export interface RegisterUserData {
     name: string;
     email: string;
     password: string;
-    phone: string;
+    telefone: string;
+    endereco: string;
 }
 
 export interface LoginUserData {
@@ -23,40 +24,8 @@ export interface UserFormData extends RegisterUserData {
 
 export interface User{
     name: string;
-    email: Email;
-    telefone: Telefone;
-    id: number;
-    endereco: Endereco;
-}
-
-export interface Telefone{
-    tipo: string;
-    numero: string;
-    principal: number;
-    id: number;
-}
-
-export interface Email{
-    principal: number;
-    id: number;
     email: string;
-}
-export interface Endereco{
-    cep: string;
-    rua: string;
-    numero: string;
-    bairro: string;
-    cidade: Cidade;
-}
-
-export interface Cidade {
+    telefone: string;
     id: number;
-    nome: string;
-    estado: Estado;
-}
-
-export interface Estado {
-    id: number;
-    sigla: string;
-    nome: string;
+    endereco: string;
 }

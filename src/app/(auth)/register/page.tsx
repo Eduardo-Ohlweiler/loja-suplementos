@@ -18,7 +18,7 @@ export default function Register() {
         resolver: yupResolver(registerSchema)
     });
 
-    const onFormSubmit = ({ name, email, password, phone }: UserFormData) => {registerUser({ name, email, password,phone })};
+    const onFormSubmit = ({ name, email, password, telefone, endereco }: UserFormData) => {registerUser({ name, email, password,telefone, endereco })};
 
 
 
@@ -56,9 +56,14 @@ export default function Register() {
                                 <Text color="red.500" fontSize="14px">{errors.email?.message}</Text>
                             </Field.Root>
                             <Field.Root>
-                                <Field.Label htmlFor="phone" fontWeight="semibold" color="gray.700">Telefone:</Field.Label>
-                                <Input {...register("phone")} placeholder="Digite seu telefone" color="gray.600" />
-                                <Text color="red.500" fontSize="14px">{errors.phone?.message}</Text>
+                                <Field.Label htmlFor="telefone" fontWeight="semibold" color="gray.700">Telefone:</Field.Label>
+                                <Input {...register("telefone")} placeholder="Digite seu telefone" color="gray.600" />
+                                <Text color="red.500" fontSize="14px">{errors.telefone?.message}</Text>
+                            </Field.Root>
+                            <Field.Root>
+                                <Field.Label htmlFor="endereco" fontWeight="semibold" color="gray.700">Endereço:</Field.Label>
+                                <Input {...register("endereco")} placeholder="Digite seu endereço" color="gray.600" />
+                                <Text color="red.500" fontSize="14px">{errors.endereco?.message}</Text>
                             </Field.Root>
                             <Field.Root>
                                 <Field.Label htmlFor="password" fontWeight="semibold" color="gray.700">Senha:</Field.Label>

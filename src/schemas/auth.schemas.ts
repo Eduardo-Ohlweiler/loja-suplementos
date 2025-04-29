@@ -27,7 +27,8 @@ export const registerSchema = yup.object().shape({
         .string()
         .required("Confirme sua senha")
         .oneOf([yup.ref("password")], "Senhas diferentes"),
-    phone: yup.string().required("Telefone obrigatório"),
+    telefone: yup.string().required("Telefone obrigatório"),
+    endereco: yup.string().required("Endereço obrigatório"),
 });
 
 export const loginSchema = yup.object().shape({
