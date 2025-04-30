@@ -1,0 +1,78 @@
+import { Classificacao } from "@/types/produto/classificacao";
+import { Objetivo } from "@/types/produto/objetivo";
+import { Produto } from "@/types/produto/produto";
+import {
+  CardBody,
+  Image,
+  Text,
+  Button,
+  VStack,
+  Card,
+} from "@chakra-ui/react";
+
+interface ProdutoProps {
+    produto: Produto;
+    categorias: Classificacao[];
+    objetivos: Objetivo[];
+}
+
+const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos }) => {
+
+    const categoria = categorias.find(cat => cat.id === produto.categoria_id);
+    const objetivo = objetivos.find(obj => obj.id === produto.objetivo_id);
+
+    return (
+        <Card.Root
+        bg="white"
+        borderRadius="xl"
+        boxShadow="md"
+        overflow="hidden"
+        transition="0.2s"
+        _hover={{ boxShadow: "lg", transform: "scale(1.02)" }}
+        w={"100%"}
+        maxW="300px"
+        mx="auto"
+        >
+        <Image
+            src={produto.foto}
+            alt={produto.produto_nome}
+            objectFit="contain"
+            w="100%"
+            h="200px"
+        />
+
+        <CardBody>
+            <VStack align="start">
+            <Text fontWeight="bold" fontSize="lg" color="gray.800">
+                {produto.produto_nome}
+            </Text>
+
+            <Text color="red.500" fontSize="md" fontWeight="semibold">
+                R$ {produto.valor.toFixed(2).replace(".", ",")}
+            </Text>
+
+            <Text fontSize="sm" color="gray.600">
+                {produto.descricao}
+            </Text>
+            {categoria && (
+                <Text fontSize="sm" color="gray.700" fontWeight="medium">
+                Categoria: {categoria.categoria_nome}
+                </Text>
+            )}
+
+            {objetivo && (
+                <Text fontSize="xs" color="gray.500">
+                Objetivo: {objetivo.objetivo_nome}
+                </Text>
+            )}
+
+            <Button backgroundColor={"red.700"} color={"white"} w="full" mt={2} border={"red"}>
+                Adicionar ao carrinho
+            </Button>
+            </VStack>
+        </CardBody>
+        </Card.Root>
+    );
+};
+
+export default ProdutoCard;

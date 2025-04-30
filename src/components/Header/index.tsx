@@ -6,7 +6,6 @@ import { IoMdPerson } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { menu_header } from "@/utils/button/menu_header";
-import logo_loja from "@/utils/images/logo_loja.jpeg";
 
 const Header = () => {
   return (
@@ -69,7 +68,7 @@ const Header = () => {
       >
         <ChakraLink as={Link} href="/" display="flex" flexDirection="row">
           <Image
-            src={logo_loja}
+            src="/images/logo_loja.jpeg"
             alt="Logo da loja"
             width={100}
             height={100}

@@ -1,5 +1,5 @@
 "use client";
-import logo_redondo from "@/utils/images/logo_redondo.jpeg";
+
 import { PasswordInput } from "@/components/ui/password-input";
 import { Provider } from "@/components/ui/provider";
 import { useAuth } from "@/contexts/AuthContext";
@@ -63,7 +63,7 @@ export default function Login() {
               </Fieldset.Legend>
             </Box>
             <Box display="flex" justifyContent="center" mb="4">
-                <Image src={logo_redondo} alt="Logo da loja" width={150} height={150} />
+                <Image src="/images/logo_redondo.jpeg" alt="Logo da loja" width={150} height={150} />
               </Box>
             <Fieldset.Content>
               <Box mb="4">

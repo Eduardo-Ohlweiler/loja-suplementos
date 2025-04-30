@@ -1,5 +1,5 @@
 export interface RegisterUserData {
-    name: string;
+    nome: string;
     email: string;
     password: string;
     telefone: string;
@@ -23,7 +23,7 @@ export interface UserFormData extends RegisterUserData {
 }
 
 export interface User{
-    name: string;
+    nome: string;
     email: string;
     telefone: string;
     id: number;
