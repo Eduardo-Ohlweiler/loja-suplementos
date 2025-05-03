@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { IoMdPerson } from "react-icons/io";
-import { FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { menu_header } from "@/utils/button/menu_header";
+import Cart from "../Cart";
 
 const Header = () => {
   return (
@@ -90,6 +90,7 @@ const Header = () => {
             height="45px"
             bg="white"
             display={{ base: "none", md: "flex" }}
+            color="black"
           />
           <Button
             bg="red.700"
@@ -122,9 +123,7 @@ const Header = () => {
           color="white"
           _hover={{ bg: "red.600" }}
         >
-          <Link href="/">
-            <FaShoppingCart />
-          </Link>
+          <Cart/>
         </Button>
       </Flex>
     </Flex>
