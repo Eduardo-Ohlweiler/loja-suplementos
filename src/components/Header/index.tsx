@@ -2,10 +2,10 @@ import { Button, Flex, Group, Heading, Input, Menu, Portal, Text, Link as Chakra
 import Link from "next/link";
 import Image from "next/image";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
-import { IoMdPerson } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { menu_header } from "@/utils/button/menu_header";
 import Cart from "../Cart";
+import ButtonUser from "../ButtonUser";
 
 const Header = () => {
   return (
@@ -107,24 +107,8 @@ const Header = () => {
       </Flex>
 
       <Flex align="center" gap={4}>
-        <Button
-          variant="solid"
-          bg="red.700"
-          color="white"
-          _hover={{ bg: "red.600" }}
-        >
-          <Link href="/login">
-            <IoMdPerson />
-          </Link>
-        </Button>
-        <Button
-          variant="solid"
-          bg="red.700"
-          color="white"
-          _hover={{ bg: "red.600" }}
-        >
-          <Cart/>
-        </Button>
+        <ButtonUser />
+        <Cart/>
       </Flex>
     </Flex>
   );

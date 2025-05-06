@@ -23,8 +23,9 @@ import CartCards from "../CartCards";
                     variant="solid"
                     bg="red.700"
                     color="white"
-                    _hover={{ bg: "red.600" }}
-                    w={"10px"}>
+                    _hover= {{ bg: "red.600" }}
+                    
+            >
               <FaShoppingCart />
             </Button>
           </Drawer.Trigger>

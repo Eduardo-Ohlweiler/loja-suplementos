@@ -4,7 +4,9 @@ export interface RegisterUserData {
     password: string;
     telefone: string;
     endereco: string;
+    confirmPassword?: string;
 }
+
 
 export interface LoginUserData {
     email: string;
@@ -14,9 +16,13 @@ export interface LoginUserData {
 export interface AuthContextInterface {
     registerUser: (data: RegisterUserData) => void;
     loginUser: (data: LoginUserData) => void;
+    logoutUser: () => void;
     user: User | null;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
     isLoged: boolean;
+    token: string | null;
 }
+
 
 export interface UserFormData extends RegisterUserData {
     confirmPassword: string;
@@ -29,3 +35,12 @@ export interface User{
     id: number;
     endereco: string;
 }
+
+export interface UpdateUserData {
+    nome: string;
+    email: string;
+    telefone: string;
+    endereco: string;
+    password: string;
+}
+
