@@ -11,9 +11,12 @@ import {
   } from "@chakra-ui/react";
   import { FaShoppingCart } from "react-icons/fa";
 import CartCards from "../CartCards";
+import { useCart } from "@/contexts/CartContext";
   
   const Cart = () => {
 
+    const { cart } = useCart();
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   
     return (
       <HStack wrap="wrap">
@@ -53,7 +56,7 @@ import CartCards from "../CartCards";
                 <Flex color={"black"}
                       fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}>
                     <Text>Total:</Text>
-                    <Text font={"bold"}>R$0,00</Text>
+                    <Text fontWeight="bold">R$ {total.toFixed(2).replace('.', ',')}</Text>
                 </Flex>
                 <Flex gap={6}>
                     <Drawer.ActionTrigger asChild>

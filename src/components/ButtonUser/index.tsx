@@ -6,8 +6,13 @@ import { useRouter } from "next/navigation";
 import { IoMdPerson } from "react-icons/io";
 
 const ButtonUser = () => {
+  const { user, isLoged } = useAuth();
   const { logoutUser } = useAuth();
   const router = useRouter();
+  const navigateTo = (path: string) => {
+    router.push(path);
+  };
+
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
@@ -25,27 +30,57 @@ const ButtonUser = () => {
       <Portal>
         <Menu.Positioner>
             <Menu.Content bg="white" color="black" borderRadius="md" boxShadow="lg"  border ={"none"}>
-                <Menu.Item
-                    value="user"
-                    onClick={() => router.push("/register")}
-                    _hover={{ bg: "gray.100" }}
-                    _focus={{ boxShadow: "none", outline: "none" }}
-                    color="black"
-                    border="none"
-                >
-                    Meu Perfil
-                </Menu.Item>
+              {!user && !isLoged ?
+              (
+                <>
+                  <Menu.Item
+                      value="user"
+                      onClick={() => router.push("/register")}
+                      _hover={{ bg: "gray.100" }}
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                      color="black"
+                      border="none"
+                  >
+                      Registre-se
+                  </Menu.Item>
 
-                <Menu.Item
-                    value="login"
-                    onClick={logoutUser}
-                    _hover={{ bg: "gray.100" }}
-                    _focus={{ boxShadow: "none", outline: "none" }}
-                    color="black"
-                    border="none"
-                >
-                    Logout
-                </Menu.Item>
+                  <Menu.Item
+                      value="login"
+                      onClick={() => navigateTo("/login")}
+                      _hover={{ bg: "gray.100" }}
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                      color="black"
+                      border="none"
+                  >
+                      Login
+                  </Menu.Item>
+                  </>
+              ) : (
+                  <>
+                  <Menu.Item
+                      value="user"
+                      onClick={() => router.push("/register")}
+                      _hover={{ bg: "gray.100" }}
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                      color="black"
+                      border="none"
+                  >
+                      Meu Perfil
+                  </Menu.Item>
+
+                  <Menu.Item
+                      value="login"
+                      onClick={logoutUser}
+                      _hover={{ bg: "gray.100" }}
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                      color="black"
+                      border="none"
+                  >
+                      Logout
+                  </Menu.Item>
+                  </>
+              )
+            }
             </Menu.Content>
         </Menu.Positioner>
       </Portal>

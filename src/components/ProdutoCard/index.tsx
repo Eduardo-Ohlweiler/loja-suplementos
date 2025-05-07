@@ -1,6 +1,7 @@
 import { Classificacao } from "@/types/produto/classificacao";
 import { Objetivo } from "@/types/produto/objetivo";
 import { Produto } from "@/types/produto/produto";
+import { useCart } from "@/contexts/CartContext";
 import {
   CardBody,
   Image,
@@ -17,9 +18,20 @@ interface ProdutoProps {
 }
 
 const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos }) => {
+    const { addToCart } = useCart();
 
     const categoria = categorias.find(cat => cat.id === produto.categoria_id);
     const objetivo = objetivos.find(obj => obj.id === produto.objetivo_id);
+
+    const handleAddToCart = () => {
+        const item = {
+          id: produto.id,
+          name: produto.produto_nome,
+          price: produto.valor,
+          quantity: 1,
+        };
+        addToCart(item);
+      };
 
     return (
         <Card.Root
@@ -66,7 +78,7 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos })
                 </Text>
             )}
 
-            <Button backgroundColor={"red.700"} color={"white"} w="full" mt={2} border={"red"}>
+            <Button backgroundColor={"red.700"} color={"white"} w="full" mt={2} border={"red"} onClick={handleAddToCart}>
                 Adicionar ao carrinho
             </Button>
             </VStack>
