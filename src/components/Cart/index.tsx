@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Badge,
     Button,
     CloseButton,
     Drawer,
@@ -18,6 +19,7 @@ import { useCart } from "@/contexts/CartContext";
     const { cart } = useCart();
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     return (
       <HStack wrap="wrap">
         <Drawer.Root >
@@ -27,9 +29,23 @@ import { useCart } from "@/contexts/CartContext";
                     bg="red.700"
                     color="white"
                     _hover= {{ bg: "red.600" }}
-                    
             >
               <FaShoppingCart />
+              {totalItems > 0 && (
+              <Badge
+                colorScheme="red"
+                position="absolute"
+                top="-1"
+                right="-1"
+                borderRadius="full"
+                fontSize="sm"
+                color="black"
+                backgroundColor={"#d8d8d8"}
+                p={1}
+              >
+                {totalItems}
+              </Badge>
+            )}
             </Button>
           </Drawer.Trigger>
           <Portal >

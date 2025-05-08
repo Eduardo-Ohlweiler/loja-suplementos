@@ -10,4 +10,6 @@ export interface CartContextInterface {
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  incrementQuantity: (productId: number) => void;
+  decrementQuantity: (productId: number) => void;
 }

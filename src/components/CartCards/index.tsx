@@ -5,7 +5,7 @@ import { FaTrash } from "react-icons/fa";
 
 const CartCards = () => {
 
-    const { cart } = useCart();
+    const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
     
     return (
         <>
@@ -35,6 +35,7 @@ const CartCards = () => {
                             backgroundColor={"white"}
                             fontWeight={"bold"}
                             display={"flex"}
+                            gap={2}
                         >
                             Saiba mais
                         </Button>
@@ -53,14 +54,20 @@ const CartCards = () => {
                                 flexDirection={"column"}
                                 alignItems={"start"}
                                 justifyContent={"space-between"}
+                                gap={2}
 
                         >
-                            <Card.Title fontSize={"12px"} >{item.name}</Card.Title>
                             <Flex as ={"span"} flexDirection={"column"}
                                                 font={"bold"}
                                                 fontSize={"10px"}
                                                 wordWrap={"no-wrap"}
+                                                gap={1}
+                                                paddingTop={"8px"}
                             >
+                                <Flex h={"30px"} fontSize={"12px"} alignContent={"center"} alignItems={"center"}>
+                                    <Text >{item.name}</Text>
+                                </Flex>
+                                
                                 <Flex gap={2}>
                                     <Text >Valor: </Text>
                                     <Text color={"red.700"}> R$ {item.price.toFixed(2).replace(".", ",")}</Text>
@@ -78,6 +85,7 @@ const CartCards = () => {
                                         backgroundColor={"#d8d8d8"}
                                         _hover={{ bg: "#999999", color: "white" }}
                                         font={"bold"}
+                                        onClick={() => decrementQuantity(item.id)}
                                 >
                                     -
                                 </Button>
@@ -89,6 +97,7 @@ const CartCards = () => {
                                         color={"white"}
                                         _hover={{ bg: "red.600", color: "white" }}
                                         font={"bold"}
+                                        onClick={() => incrementQuantity(item.id)}
                                 >
                                     +
                                 </Button>
@@ -100,6 +109,7 @@ const CartCards = () => {
                                         color={"red.600"}
                                         _hover={{ color: "red.700" }}
                                         font={"bold"}
+                                        onClick={() => removeFromCart(item.id)}
                                 >
                                     <FaTrash />
                                 </Button>

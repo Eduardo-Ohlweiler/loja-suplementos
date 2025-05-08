@@ -21,6 +21,13 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
+    if (!isLoged) {
+      setCart([]);
+      localStorage.removeItem("@cart");
+    }
+  }, [isLoged]);
+
+  useEffect(() => {
     localStorage.setItem("@cart", JSON.stringify(cart));
   }, [cart]);
 
@@ -60,8 +67,28 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCart([]);
   };
 
+  const incrementQuantity = (productId: number) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+  
+  const decrementQuantity = (productId: number) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+            : item
+        )
+    );
+  };
+  
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, incrementQuantity, decrementQuantity }}>
       {children}
     </CartContext.Provider>
   );

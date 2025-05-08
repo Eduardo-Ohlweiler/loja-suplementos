@@ -1,3 +1,4 @@
+"use client";
 import { Button, Flex, Group, Heading, Input, Menu, Portal, Text, Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,8 +7,19 @@ import { IoMenu } from "react-icons/io5";
 import { menu_header } from "@/utils/button/menu_header";
 import Cart from "../Cart";
 import ButtonUser from "../ButtonUser";
+import { useProductContext } from "@/contexts/ProductContext";
 
 const Header = () => {
+
+  const {  setFilteredProducts, products } = useProductContext();
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value.toLowerCase();
+    const filtered = products.filter((produto) =>
+      produto.produto_nome.toLowerCase().includes(query)
+    );
+    setFilteredProducts(filtered);
+  };
+
   return (
     <Flex
       as="header"
@@ -81,6 +93,7 @@ const Header = () => {
       <Flex flex="1" justify="center" mx={8}>
         <Group attached w="100%" maxW="700px">
           <Input
+            onChange={handleSearch}
             flex="1"
             placeholder="Buscar produto"
             borderColor="red.700"

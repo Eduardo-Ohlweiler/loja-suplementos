@@ -33,7 +33,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     setUser(response);
                 } catch (error) {
                     console.error("Erro ao carregar o usuário:", error);
-                    toast.error("Erro ao carregar o usuário");
                 }
             }
         };
@@ -76,7 +75,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setUser(null);
             setIsLoged(false);
             toast.success("Usuário deslogado com sucesso!");
-            router.push("/login");
+            router.refresh();
+
         } catch (error: any) {
             toast.error(error.response?.data || "Erro desconhecido ao realizar logout");
         }

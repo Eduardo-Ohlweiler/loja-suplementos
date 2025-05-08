@@ -7,16 +7,16 @@ import { Objetivo } from "@/types/produto/objetivo";
 import { Produto } from "@/types/produto/produto";
 import { Box, Center, Grid, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useProductContext } from "@/contexts/ProductContext";
 
 export default function Home() {
-
-    const [produtos, setProdutos] = useState<Produto[]>([]);
+    const { filteredProducts, setProducts } = useProductContext();
     const [categorias, setCategorias] = useState<Classificacao[]>([]);
     const [objetivos, setObjetivos] = useState<Objetivo[]>([]);
 
     const fetchProdutos = async() => {
         const produtos = await getProdutos();
-        setProdutos(produtos);
+        setProducts(produtos);
     }
 
     const fetchCategorias = async() => {
@@ -35,6 +35,7 @@ export default function Home() {
         fetchObjetivos();
     }, []);
 
+    const produtosExibidos = filteredProducts.length > 0 ? filteredProducts : [];
     return (
         <Center paddingBottom={"40px"}>
             <Box>
@@ -43,7 +44,7 @@ export default function Home() {
                 </Heading>
                 <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", xl: "repeat(4, 1fr)" }}
                       gap={2}>
-                    {produtos?.map((produto, index) => (
+                    {produtosExibidos?.map((produto: Produto, index: number) => (
                         <ProdutoCard
                             key={produto.id+index}{...produto}
                             produto={produto}
