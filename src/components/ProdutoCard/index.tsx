@@ -2,6 +2,7 @@ import { Classificacao } from "@/types/produto/classificacao";
 import { Objetivo } from "@/types/produto/objetivo";
 import { Produto } from "@/types/produto/produto";
 import { useCart } from "@/contexts/CartContext";
+
 import {
   CardBody,
   Image,
@@ -10,6 +11,7 @@ import {
   VStack,
   Card,
 } from "@chakra-ui/react";
+import ProductWindow from "../ProductWindow";
 
 interface ProdutoProps {
     produto: Produto;
@@ -59,12 +61,8 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos })
                 {produto.produto_nome}
             </Text>
 
-            <Text color="red.500" fontSize="md" fontWeight="semibold">
+            <Text color="red.700" fontSize="lg" fontWeight="semibold">
                 R$ {produto.valor.toFixed(2).replace(".", ",")}
-            </Text>
-
-            <Text fontSize="sm" color="gray.600">
-                {produto.descricao}
             </Text>
             {categoria && (
                 <Text fontSize="sm" color="gray.700" fontWeight="medium">
@@ -77,8 +75,25 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos })
                 Objetivo: {objetivo.objetivo_nome}
                 </Text>
             )}
+            <Button w={"full"}
+                    overflow="hidden"
+                    transition="0.5s"
+                    _hover={{ transform: "scale(1.02)" }} 
+            >
+                <ProductWindow  produto={produto}
+                                categoriaNome={categoria ? categoria.categoria_nome : ""}
+                                objetivoNome={objetivo ? objetivo.objetivo_nome : ""}
+                />
+            </Button>
 
-            <Button backgroundColor={"red.700"} color={"white"} w="full" mt={2} border={"red"} onClick={handleAddToCart}>
+            <Button backgroundColor={"red.700"} 
+                    color={"white"} w="full" 
+                    mt={2} border={"red"} 
+                    _hover={{ bg: "red.600", transform: "scale(1.02)", transition: "0.5s" }} 
+                    overflow="hidden" 
+                    transition="0.8s" 
+                    onClick={handleAddToCart}
+            >
                 Adicionar ao carrinho
             </Button>
             </VStack>
