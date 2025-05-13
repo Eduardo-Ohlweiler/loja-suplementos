@@ -3,8 +3,10 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { Produto } from "../types/produto/produto";
 
+
 type ProductContextType = {
   products: Produto[];
+
   filteredProducts: Produto[];
   setProducts: (products: Produto[]) => void;
   setFilteredProducts: (products: Produto[]) => void;

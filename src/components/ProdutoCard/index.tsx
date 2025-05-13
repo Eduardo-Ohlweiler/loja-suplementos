@@ -27,10 +27,8 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos })
 
     const handleAddToCart = () => {
         const item = {
-          id: produto.id,
-          name: produto.produto_nome,
-          price: produto.valor,
-          quantity: 1,
+          ...produto,
+          quantidade: 1,
         };
         addToCart(item);
       };

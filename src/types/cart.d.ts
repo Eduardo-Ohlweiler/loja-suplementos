@@ -1,8 +1,7 @@
-export interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
+import { Produto } from "./produto/produto";
+
+export interface CartItem extends Produto {
+  quantidade: number;
 }
 
 export interface CartContextInterface {
@@ -12,4 +11,9 @@ export interface CartContextInterface {
   clearCart: () => void;
   incrementQuantity: (productId: number) => void;
   decrementQuantity: (productId: number) => void;
+}
+
+export interface CartCardsProps {
+  categorias: Classificacao[];
+  objetivos: Objetivo[];
 }

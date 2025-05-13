@@ -1,4 +1,5 @@
 "use client";
+import { useCart } from "@/contexts/CartContext";
 import { ProductWindowProps } from "@/types/produtowindow";
 import {
   Button,
@@ -15,6 +16,21 @@ import { useState } from "react";
 
 const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, objetivoNome}) => {
   const [open, setOpen] = useState(false);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    const item = {
+      id: produto.id,
+      produto_nome: produto.produto_nome,
+      valor: produto.valor,
+      quantidade: 1,
+      foto: produto.foto,
+      descricao: produto.descricao,
+      categoria_id: produto.categoria_id,
+      objetivo_id: produto.objetivo_id,
+    };
+    addToCart(item);
+  };
   return (
     <Dialog.Root lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
       <Dialog.Trigger asChild>
@@ -56,7 +72,7 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
                 alt={produto.produto_nome}
                 objectFit="contain"
                 width="100%"
-                height="200px"
+                height="250px"
               />
 
               <Flex
@@ -69,8 +85,8 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
                 <Text
                   fontSize={{
                     base: "16px",
-                    md: "18px",
-                    lg: "20px",
+                    md: "20px",
+                    lg: "22px",
                   }}
                   fontWeight="bold"
                 >
@@ -89,16 +105,16 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
                     <Text
                         fontSize={{
                         base: "12px",
-                        md: "14px",
-                        lg: "16px",
-                        xl: "18px",
+                        md: "16px",
+                        lg: "18px",
+                        xl: "20px",
                         }}
                         textAlign="left"
                     >
                         {produto.descricao}
                     </Text>
                 </Box>
-                <Grid templateColumns="auto 1fr" gap={2} w="100%" mt="4" >
+                <Grid templateColumns="auto 1fr" gap={2} w="100%" mt="auto" >
                     <Text fontSize="18px" fontWeight="bold">Categoria:</Text>
                     <Text fontSize="18px">{categoriaNome}</Text>
 
@@ -153,6 +169,7 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
                 color="white"
                 backgroundColor="red.700"
                 _hover={{ bg: "red.600" }}
+                onClick={handleAddToCart}
               >
                 Adicionar ao carrinho
               </Button>

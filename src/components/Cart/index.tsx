@@ -13,13 +13,36 @@ import {
   import { FaShoppingCart } from "react-icons/fa";
 import CartCards from "../CartCards";
 import { useCart } from "@/contexts/CartContext";
+import { Classificacao } from "@/types/produto/classificacao";
+import { Objetivo } from "@/types/produto/objetivo";
+import { useEffect, useState } from "react";
+import { getCategorias, getObjetivos } from "@/services/produto.service";
+//import { useProductContext } from "@/contexts/ProductContext";
   
   const Cart = () => {
+      const [categorias, setCategorias] = useState<Classificacao[]>([]);
+      const [objetivos, setObjetivos]   = useState<Objetivo[]>([]);
+      const { cart } = useCart();
+    //const { filteredProducts: produtos } = useProductContext();
+    
 
-    const { cart } = useCart();
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = cart.reduce((sum, item) => sum + item.valor * item.quantidade, 0);
+  const totalItems = cart.reduce((total, item) => total + item.quantidade, 0);
+
+  const fetchCategorias = async() => {
+          const categorias = await getCategorias();
+          setCategorias(categorias);
+      }
   
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      const fetchObjetivos = async() => {
+          const objetivos = await getObjetivos();
+          setObjetivos(objetivos);
+      }
+
+      useEffect(() => {
+              fetchCategorias();
+              fetchObjetivos();
+          }, []);
     return (
       <HStack wrap="wrap">
         <Drawer.Root >
@@ -62,8 +85,7 @@ import { useCart } from "@/contexts/CartContext";
                              boxShadow={"xl"}
                              
                 >
-                  
-                  <CartCards/>
+                  <CartCards categorias={categorias} objetivos={objetivos} />
                 </Drawer.Body>
                 <Drawer.Footer backgroundColor={"white"}
                                boxShadow="0px 40px 120px rgba(0, 0, 0, 0.9)"

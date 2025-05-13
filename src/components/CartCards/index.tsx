@@ -1,12 +1,31 @@
 "use client"
+import React, { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import {  Box, Button, Card, Flex, Image, Text } from "@chakra-ui/react";
 import { FaTrash } from "react-icons/fa";
+import ProductWindow from "../ProductWindow";
+import { Produto } from "@/types/produto/produto";
+import { CartCardsProps } from "@/types/cart";
 
-const CartCards = () => {
-
+const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
     const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
+    const [selectedProduct, setSelectedProduct] = useState<Produto| null>(null);
+
+    const handleShowProductWindow = (produto: Produto) => {
+        setSelectedProduct(produto);
+    };
+
+    const getCategoriaNome = (categoriaId: number) => {
+        const categoria = categorias.find(cat => cat.id === categoriaId);
+        return categoria ? categoria.nome : "Categoria desconhecida";
+    };
     
+    const getObjetivoNome = (objetivoId: number) => {
+        const objetivo = objetivos.find(obj => obj.id === objetivoId);
+        return objetivo ? objetivo.nome : "Objetivo desconhecido";
+    };
+    
+
     return (
         <>
             {cart.map((item) =>(
@@ -23,8 +42,8 @@ const CartCards = () => {
                             w="100px"
                             h="100px"
                             minH={"90px"}
-                            src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-                            alt={item.name}
+                            src={item.foto}
+                            alt={item.produto_nome}
                         />
                         <Button
                             fontSize={"10px"}
@@ -36,6 +55,7 @@ const CartCards = () => {
                             fontWeight={"bold"}
                             display={"flex"}
                             gap={2}
+                            onClick={() => handleShowProductWindow(item)}
                         >
                             Saiba mais
                         </Button>
@@ -65,16 +85,16 @@ const CartCards = () => {
                                                 paddingTop={"8px"}
                             >
                                 <Flex h={"30px"} fontSize={"12px"} alignContent={"center"} alignItems={"center"}>
-                                    <Text >{item.name}</Text>
+                                    <Text >{item.produto_nome}</Text>
                                 </Flex>
                                 
                                 <Flex gap={2}>
                                     <Text >Valor: </Text>
-                                    <Text color={"red.700"}> R$ {item.price.toFixed(2).replace(".", ",")}</Text>
+                                    <Text color={"red.700"}> R$ {item.valor.toFixed(2).replace(".", ",")}</Text>
                                 </Flex>
                                 <Flex gap={2}>
                                     <Text >Quantidade: </Text>
-                                    <Text color={"black"}>{item.quantity}</Text>
+                                    <Text color={"black"}>{item.quantidade}</Text>
                                 </Flex>
                             </Flex>
                             <Flex gap={6}>
@@ -119,6 +139,13 @@ const CartCards = () => {
                     </Box>
                 </Card.Root>
             ))}
+            {selectedProduct && (
+                <ProductWindow
+                    produto={selectedProduct}
+                    categoriaNome={getCategoriaNome(selectedProduct.categoria_id)}
+                    objetivoNome={getObjetivoNome(selectedProduct.objetivo_id)}
+                />
+            )}
         </>
     );
 };

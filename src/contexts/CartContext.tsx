@@ -38,7 +38,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         return;
         }
     
-        const itemWithQuantity = { ...item, quantity: item.quantity || 1 };
+        const itemWithQuantity = { ...item, quantidade: item.quantidade || 1 };
     
         const existing = cart.find(i => i.id === itemWithQuantity.id);
     
@@ -48,7 +48,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         setCart(prev => 
             prev.map(i =>
             i.id === itemWithQuantity.id
-                ? { ...i, quantity: i.quantity + itemWithQuantity.quantity }
+                ? { ...i, quantidade: i.quantidade + itemWithQuantity.quantidade }
                 : i
             )
         );
@@ -70,7 +70,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const incrementQuantity = (productId: number) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === productId ? { ...item, quantidade: item.quantidade + 1 } : item
       )
     );
   };
@@ -80,7 +80,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
       prevCart
         .map((item) =>
           item.id === productId
-            ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+            ? { ...item, quantidade: item.quantidade > 1 ? item.quantidade - 1 : 1 }
             : item
         )
     );

@@ -1,12 +1,15 @@
-export interface RegisterUserData {
+export interface User{
     nome: string;
     email: string;
-    password: string;
     telefone: string;
+    id: number;
     endereco: string;
-    confirmPassword?: string;
 }
 
+export interface RegisterUserData extends User {
+    password: string;
+    confirmPassword?: string;
+}
 
 export interface LoginUserData {
     email: string;
@@ -28,19 +31,9 @@ export interface UserFormData extends RegisterUserData {
     confirmPassword: string;
 }
 
-export interface User{
-    nome: string;
-    email: string;
-    telefone: string;
-    id: number;
-    endereco: string;
-}
 
-export interface UpdateUserData {
-    nome: string;
-    email: string;
-    telefone: string;
-    endereco: string;
+
+export interface UpdateUserData extends User {
     password: string;
 }
 
