@@ -1,19 +1,14 @@
 "use client"
-import React, { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import {  Box, Button, Card, Flex, Image, Text } from "@chakra-ui/react";
 import { FaTrash } from "react-icons/fa";
 import ProductWindow from "../ProductWindow";
-import { Produto } from "@/types/produto/produto";
 import { CartCardsProps } from "@/types/cart";
 
 const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
     const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
-    const [selectedProduct, setSelectedProduct] = useState<Produto| null>(null);
 
-    const handleShowProductWindow = (produto: Produto) => {
-        setSelectedProduct(produto);
-    };
+
 
     const getCategoriaNome = (categoriaId: number) => {
         const categoria = categorias.find(cat => cat.id === categoriaId);
@@ -45,20 +40,19 @@ const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
                             src={item.foto}
                             alt={item.produto_nome}
                         />
-                        <Button
-                            fontSize={"10px"}
-                            color={"red.700"}
-                            h={"30px"}
-                            alignItems={"center"}
-                            justifyContent={"center"}
-                            backgroundColor={"white"}
-                            fontWeight={"bold"}
-                            display={"flex"}
-                            gap={2}
-                            onClick={() => handleShowProductWindow(item)}
-                        >
-                            Saiba mais
-                        </Button>
+                        <ProductWindow 
+                            produto={{
+                            id: item.id,
+                            produto_nome: item.produto_nome,
+                            descricao: item.descricao || "",
+                            valor: item.valor,
+                            foto: item.foto,
+                            categoria_id: item.categoria_id,
+                            objetivo_id: item.objetivo_id,
+                            }}
+                            categoriaNome={getCategoriaNome(item.categoria_id)}
+                            objetivoNome={getObjetivoNome(item.objetivo_id)}
+                        />
                     </Flex>
                     
                     <Box backgroundColor={"white"}
@@ -139,13 +133,6 @@ const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
                     </Box>
                 </Card.Root>
             ))}
-            {selectedProduct && (
-                <ProductWindow
-                    produto={selectedProduct}
-                    categoriaNome={getCategoriaNome(selectedProduct.categoria_id)}
-                    objetivoNome={getObjetivoNome(selectedProduct.objetivo_id)}
-                />
-            )}
         </>
     );
 };

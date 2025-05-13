@@ -73,16 +73,11 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos })
                 Objetivo: {objetivo.objetivo_nome}
                 </Text>
             )}
-            <Button w={"full"}
-                    overflow="hidden"
-                    transition="0.5s"
-                    _hover={{ transform: "scale(1.02)" }} 
-            >
-                <ProductWindow  produto={produto}
-                                categoriaNome={categoria ? categoria.categoria_nome : ""}
-                                objetivoNome={objetivo ? objetivo.objetivo_nome : ""}
-                />
-            </Button>
+
+            <ProductWindow  produto={produto}
+                            categoriaNome={categoria ? categoria.categoria_nome : ""}
+                            objetivoNome={objetivo ? objetivo.objetivo_nome : ""}
+            />
 
             <Button backgroundColor={"red.700"} 
                     color={"white"} w="full" 

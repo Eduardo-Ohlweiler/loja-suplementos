@@ -38,11 +38,12 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
           variant="outline"
           h="30px"
           border="none"
-          borderRadius="md"
+          borderRadius="sm"
           fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px" }}
           color="white"
           backgroundColor="red.800"
           _hover={{ bg: "red.700" }}
+          w={"100px"}
         >
           Saiba mais
         </Button>
