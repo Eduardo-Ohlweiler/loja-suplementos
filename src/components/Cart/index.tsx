@@ -9,6 +9,7 @@ import {
     HStack,
     Portal,
     Text,
+    Link as ChakraLink
   } from "@chakra-ui/react";
   import { FaShoppingCart } from "react-icons/fa";
 import CartCards from "../CartCards";
@@ -17,14 +18,12 @@ import { Classificacao } from "@/types/produto/classificacao";
 import { Objetivo } from "@/types/produto/objetivo";
 import { useEffect, useState } from "react";
 import { getCategorias, getObjetivos } from "@/services/produto.service";
-//import { useProductContext } from "@/contexts/ProductContext";
+import Link from "next/link";
   
   const Cart = () => {
       const [categorias, setCategorias] = useState<Classificacao[]>([]);
       const [objetivos, setObjetivos]   = useState<Objetivo[]>([]);
       const { cart } = useCart();
-    //const { filteredProducts: produtos } = useProductContext();
-    
 
   const total = cart.reduce((sum, item) => sum + item.valor * item.quantidade, 0);
   const totalItems = cart.reduce((total, item) => total + item.quantidade, 0);
@@ -107,13 +106,19 @@ import { getCategorias, getObjetivos } from "@/services/produto.service";
                             Cancelar
                         </Button>
                     </Drawer.ActionTrigger>
-                    <Button backgroundColor={"red.700"}
+                    <ChakraLink as={Link} href="/finalizar"
+                            backgroundColor={"red.700"}
                             color={"white"}
                             w={"150px"}
                             _hover={{ bg: "red.600" }}
+                            alignItems={"center"}
+                            justifyContent={"center"}
+                            display={"flex"}
+                            border={"none"}
+                            borderRadius={"6px"}
                     >
                         Finalizar
-                    </Button>
+                    </ChakraLink>
                 </Flex>
                     
                 </Drawer.Footer>

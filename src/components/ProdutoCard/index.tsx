@@ -12,18 +12,37 @@ import {
   Card,
 } from "@chakra-ui/react";
 import ProductWindow from "../ProductWindow";
+import { useEffect, useState } from "react";
+import { getCategorias, getObjetivos } from "@/services/produto.service";
 
 interface ProdutoProps {
     produto: Produto;
-    categorias: Classificacao[];
-    objetivos: Objetivo[];
+    categorias?: Classificacao[];
+    objetivos?: Objetivo[];
 }
 
-const ProdutoCard: React.FC<ProdutoProps> = ({ produto, categorias, objetivos }) => {
+const ProdutoCard: React.FC<ProdutoProps> = ({ produto }) => {
     const { addToCart } = useCart();
+    const [categorias, setCategorias] = useState<Classificacao[]>([]);
+    const [objetivos, setObjetivos] = useState<Objetivo[]>([]);
 
     const categoria = categorias.find(cat => cat.id === produto.categoria_id);
     const objetivo = objetivos.find(obj => obj.id === produto.objetivo_id);
+
+    const fetchCategorias = async() => {
+            const categorias = await getCategorias();
+            setCategorias(categorias);
+        }
+    
+        const fetchObjetivos = async() => {
+            const objetivos = await getObjetivos();
+            setObjetivos(objetivos);
+        }
+    
+        useEffect(() => {
+            fetchCategorias();
+            fetchObjetivos();
+        }, []);
 
     const handleAddToCart = () => {
         const item = {

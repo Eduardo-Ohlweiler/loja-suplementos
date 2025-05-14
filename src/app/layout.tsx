@@ -5,6 +5,7 @@ import AuthProvider from "@/contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
 import CartProvider from "@/contexts/CartContext";
 import { ProductProvider } from "@/contexts/ProductContext";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
