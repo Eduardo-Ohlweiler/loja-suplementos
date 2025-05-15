@@ -164,7 +164,7 @@ export default function Register() {
                                         <ChakraLink backgroundColor={"blue.700"} color={"white"} w={"100px"} href="/" alignItems={"center"} justifyContent={"center"}>
                                             Cancelar
                                         </ChakraLink>
-                                        <Button onClick={logoutUser} >Logout</Button>
+                                        <Button  onClick={() => logoutUser('/login')} >Logout</Button>
                                     </Flex>
                                 </>
                             )

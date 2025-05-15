@@ -67,7 +67,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     };
 
-    const logoutUser = () => {
+    const logoutUser = (rota?: string) => {
         try {
             localStorage.removeItem("@token");
             localStorage.removeItem("@userId");
@@ -75,6 +75,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setUser(null);
             setIsLoged(false);
             toast.success("Usuário deslogado com sucesso!");
+            router.push(rota || "/");
             router.refresh();
 
         } catch (error: any) {

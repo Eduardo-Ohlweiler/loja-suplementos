@@ -19,7 +19,7 @@ export interface LoginUserData {
 export interface AuthContextInterface {
     registerUser: (data: RegisterUserData) => void;
     loginUser: (data: LoginUserData) => void;
-    logoutUser: () => void;
+    logoutUser: (rota?: string) => void;
     user: User | null;
     setUser: React.Dispatch<React.SetStateAction<User | null>>;
     isLoged: boolean;
