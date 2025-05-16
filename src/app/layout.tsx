@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import CartProvider from "@/contexts/CartContext";
 import { ProductProvider } from "@/contexts/ProductContext";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { PagamentoProvider } from "@/contexts/PagamentoContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,9 @@ export default function RootLayout({
             <AuthProvider>
               <ProductProvider>
                 <CartProvider>
-                  {children}
+                  <PagamentoProvider>
+                    {children}
+                  </PagamentoProvider>
                 </CartProvider>
               </ProductProvider>
             </AuthProvider>
