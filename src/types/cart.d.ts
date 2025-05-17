@@ -11,6 +11,7 @@ export interface CartContextInterface {
   clearCart: () => void;
   incrementQuantity: (productId: number) => void;
   decrementQuantity: (productId: number) => void;
+  proceedToCheckout: () => void;
 }
 
 export interface CartCardsProps {

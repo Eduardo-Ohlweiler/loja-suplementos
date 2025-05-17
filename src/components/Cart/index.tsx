@@ -17,24 +17,14 @@ import { Classificacao } from "@/types/produto/classificacao";
 import { Objetivo } from "@/types/produto/objetivo";
 import { useEffect, useState } from "react";
 import { getCategorias, getObjetivos } from "@/services/produto.service";
-import { useRouter } from "next/navigation";
   
   const Cart = () => {
       const [categorias, setCategorias] = useState<Classificacao[]>([]);
       const [objetivos, setObjetivos]   = useState<Objetivo[]>([]);
-      const router = useRouter();
-      const { cart } = useCart();
+      const { cart, proceedToCheckout } = useCart();
 
   const total = cart.reduce((sum, item) => sum + item.valor * item.quantidade, 0);
   const totalItems = cart.reduce((total, item) => total + item.quantidade, 0);
-
-  const handleFinalizar = () => {
-      const query = new URLSearchParams({
-        total: total.toFixed(2),
-        cart: JSON.stringify(cart),
-      }).toString();
-      router.push(`/finalizar?${query}`);
-  }
 
   const fetchCategorias = async() => {
           const categorias = await getCategorias();
@@ -124,7 +114,7 @@ import { useRouter } from "next/navigation";
                             display={"flex"}
                             border={"none"}
                             borderRadius={"6px"}
-                            onClick={handleFinalizar}
+                            onClick={proceedToCheckout}
                     >
                         Finalizar
                     </Button>

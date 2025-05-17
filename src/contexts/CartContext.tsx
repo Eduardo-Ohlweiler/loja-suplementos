@@ -54,7 +54,6 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         );
         } else {
         toast.success("Produto adicionado ao carrinho!");
-    
         setCart(prev => [...prev, itemWithQuantity]);
         }
   };
@@ -85,10 +84,36 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         )
     );
   };
+
+  const proceedToCheckout = () => {
+    if (!isLoged) {
+      toast.warning("Você precisa estar logado para finalizar a compra.");
+      router.push("/login");
+      return;
+    }
+
+    const total = cart.reduce(
+      (sum, item) => sum + item.valor * item.quantidade,
+      0
+    );
+
+    if (total <= 0 || cart.length === 0) {
+      toast.warning("Seu carrinho está vazio ou não tem itens válidos.");
+      return;
+    }
+
+    const query = new URLSearchParams({
+      total: total.toFixed(2),
+      cart: JSON.stringify(cart),
+    }).toString();
+
+    toast.success("Prosseguindo para finalização da compra!");
+    router.push(`/finalizar?${query}`);
+  };
   
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, incrementQuantity, decrementQuantity }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, incrementQuantity, decrementQuantity, proceedToCheckout }}>
       {children}
     </CartContext.Provider>
   );
