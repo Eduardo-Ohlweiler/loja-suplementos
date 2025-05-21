@@ -4,10 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { IoMenu } from "react-icons/io5";
-import { menu_header } from "@/utils/button/menu_header";
 import Cart from "../Cart";
 import ButtonUser from "../ButtonUser";
 import { useProductContext } from "@/contexts/ProductContext";
+import { useEffect, useState } from "react";
+import { Objetivo } from "@/types/produto/objetivo";
+import { Classificacao } from "@/types/produto/classificacao";
+import { getCategorias, getObjetivos } from "@/services/produto.service";
 
 const Header = () => {
 
@@ -19,6 +22,27 @@ const Header = () => {
     );
     setFilteredProducts(filtered);
   };
+
+  const [objetivos, setObjetivos] = useState<Objetivo[]>([]);
+      const [categorias, setCategorias] = useState<Classificacao[]>([]);
+  
+  const fetchCategorias = async() => {
+      const categoriasData = await getCategorias();
+      setCategorias(categoriasData);
+  }
+
+  const fecthObjetivos = async() => {
+      const objetivosData = await getObjetivos();
+      setObjetivos(objetivosData);
+  }
+
+  useEffect(() => {
+      fetchCategorias();
+  }, []);
+
+  useEffect(() => {
+      fecthObjetivos();
+  }, []);
 
   return (
     <Flex
@@ -53,20 +77,26 @@ const Header = () => {
                               backgroundColor={"white"} 
                               color={"black"} 
                 >
-                  {
-                    menu_header.map((item, index) => (
-                      <Menu.ItemGroup key={index} >
-                        <Menu.ItemGroupLabel fontSize={"14px"}>{item.title}</Menu.ItemGroupLabel>
-                        {
-                          item.links.map((link, index) => (
-                            <Menu.Item key={index + link.value} value={link.value} fontSize={"14px"} color={"black"}>
-                                <Link href = {link.link}>{link.texto}</Link>
-                            </Menu.Item>
-                          ))
-                        }
-                      </Menu.ItemGroup>
-                    ))
-                  }
+                  <Menu.ItemGroup >
+                    <Menu.ItemGroupLabel fontSize={"14px"}>COMPRE POR OBJETIVO</Menu.ItemGroupLabel>
+                    {
+                      objetivos?.map((link, index) => (
+                        <Menu.Item key={index + link.objetivo_nome} value={link.objetivo_nome} fontSize={"14px"} color={"black"}>
+                            <Link href = {`/objetivos/${link.id}`} >{link.objetivo_nome}</Link>
+                        </Menu.Item>
+                      ))
+                    }
+                  </Menu.ItemGroup>
+                  <Menu.ItemGroup >
+                    <Menu.ItemGroupLabel fontSize={"14px"}>COMPRE POR CATEGORIA</Menu.ItemGroupLabel>
+                    {
+                      categorias?.map((link, index) => (
+                        <Menu.Item key={index + link.categoria_nome} value={link.categoria_nome} fontSize={"14px"} color={"black"}>
+                            <Link href = {`/categorias/${link.id}`} >{link.categoria_nome}</Link>
+                        </Menu.Item>
+                      ))
+                    }
+                  </Menu.ItemGroup>
                 </Menu.Content>
             </Menu.Positioner>
         </Portal>

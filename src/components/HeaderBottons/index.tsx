@@ -1,12 +1,35 @@
-import { menu_header } from "@/utils/button/menu_header";
+'use client';
+
+import { getCategorias, getObjetivos } from "@/services/produto.service";
+import { Classificacao } from "@/types/produto/classificacao";
+import { Objetivo } from "@/types/produto/objetivo";
 import { Button, Flex, Group, Input, Menu, Portal } from "@chakra-ui/react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 
-
 const HeaderBottons = () => {
-    
+    const [objetivos, setObjetivos] = useState<Objetivo[]>([]);
+    const [categorias, setCategorias] = useState<Classificacao[]>([]);
+
+    const fetchCategorias = async() => {
+        const categoriasData = await getCategorias();
+        setCategorias(categoriasData);
+    }
+
+    const fecthObjetivos = async() => {
+        const objetivosData = await getObjetivos();
+        setObjetivos(objetivosData);
+    }
+
+    useEffect(() => {
+        fetchCategorias();
+    }, []);
+
+    useEffect(() => {
+        fecthObjetivos();
+    }, []);
 
     return (
         <>
@@ -18,11 +41,11 @@ const HeaderBottons = () => {
                     display={{ base: "none", md: "none", lg: "flex", xl: "flex" }}
                     px={{ base: 4, md: 8, lg: 12, xl: 16 }}
                     boxShadow="lg">
-                <Group grow justify = "space-between" >
+                <Group grow justify = "space-between" gap="40px" >
                     <Menu.Root>
                         <Menu.Trigger asChild>
                             <Button variant="outline"  
-                                    w={{ base: "100px", md: "250px"}} 
+                                    w={{ base: "100px", md: "100px"}} 
                                     h={{ base: "40px", md: "50px", lg: "60px", xl: "70px"}} 
                                     border="none" 
                                     fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}
@@ -30,7 +53,7 @@ const HeaderBottons = () => {
                                     borderRadius={"none"}
                             >
                             <IoMenu />
-                            Suplementos
+                            Menu
                             </Button>
                         </Menu.Trigger>
                         <Portal>
@@ -41,63 +64,56 @@ const HeaderBottons = () => {
                                               backgroundColor={"white"} 
                                               color={"black"}
                                               p={"20px"}
-                                              width={"800px"}
+                                              width={"250px"}
                                               justifyContent={"space-between"}
                                               flexWrap={"wrap"}
                                 >
-                                   {
-                                    menu_header.map((item, index) => (
-                                        <Menu.ItemGroup key={index} >
-                                        <Menu.ItemGroupLabel>{item.title}</Menu.ItemGroupLabel>
+                                    <Menu.ItemGroup>
+                                        <Menu.ItemGroupLabel>COMPRE POR OBJETIVO</Menu.ItemGroupLabel>
                                         {
-                                            item.links?.map((link, index) => (
-                                                <Menu.Item key={index + link.value} value={link.value} color={"black"} fontSize={"14px"}>
-                                                    <Link href = {link.link} >{link.texto}</Link>
+                                            objetivos?.map((link, index) => (
+                                                <Menu.Item key={index + link.objetivo_nome} value={link.objetivo_nome} color={"black"} fontSize={"14px"}>
+                                                    <Link href = {`/objetivos/${link.id}`} >{link.objetivo_nome}</Link>
                                                 </Menu.Item>
                                             ))
                                         }
                                     </Menu.ItemGroup>
-                                    ))
-                                   } 
+                                    <Menu.ItemGroup>
+                                        <Menu.ItemGroupLabel>COMPRE POR CATEGORIA</Menu.ItemGroupLabel>
+                                        {
+                                            categorias?.map((link, index) => (
+                                                <Menu.Item key={index + link.categoria_nome} value={link.categoria_nome} color={"black"} fontSize={"14px"}>
+                                                    <Link href = {`/categorias/${link.id}`} >{link.categoria_nome}</Link>
+                                                </Menu.Item>
+                                            ))
+                                        }
+                                    </Menu.ItemGroup>
                                 </Menu.Content>
                             </Menu.Positioner>
                         </Portal>
                     </Menu.Root >
                     <Button variant="solid" 
-                            w={{ base: "75px", md: "200px"}} 
+                            w={{ base: "75px", md: "400px"}} 
                             border="none" 
                             fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}
                     >
-                        <Link href = "/">Promoção</Link>
+                        <Link href = {`/objetivos/todos`} >Compre por objetivo</Link>
                     </Button>
                     <Button variant="solid" 
                             h={{ base: "40px", md: "50px", lg: "60px", xl: "70px"}} 
                             border="none" 
                             fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}
                     >
-                        <Link href = "/">Proteínas</Link>
+                        <Link href = {`/categorias/todos`} >Compre por categoria</Link>
                     </Button>
                     <Button variant="solid" 
                             h={{ base: "40px", md: "50px", lg: "60px", xl: "70px"}} 
                             border="none" 
                             fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}
                     >
-                        <Link href = "/">Energia</Link>
+                        <Link href = {`/categorias/2`} >Proteínas</Link>
                     </Button>
-                    <Button variant="solid" 
-                            h={{ base: "40px", md: "50px", lg: "60px", xl: "70px"}} 
-                            border="none" 
-                            fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}
-                    >
-                        <Link href = "/">Perda de peso</Link>
-                    </Button>
-                    <Button variant="solid" 
-                            h={{ base: "40px", md: "50px", lg: "60px", xl: "70px"}} 
-                            border="none" 
-                            fontSize={{ base: "14px", md: "16px", lg: "18px", xl: "20px"}}
-                    >
-                        <Link href = "/">Combos</Link>
-                    </Button>
+                    
                 </Group>
             </Flex>
             <Group attached w="100%" maxW="700px">

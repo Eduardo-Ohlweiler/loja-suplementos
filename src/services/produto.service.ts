@@ -17,3 +17,13 @@ export const getObjetivos = async() => {
     const response = await api.get('/objetivo');
     return response.data;
 }
+
+export const getProdutosPorObjetivo = async(id?: string) => {
+    const response = await api.get(`/produto/${id ? `?objetivo_id=${id}` : ''}`);
+    return response.data;
+};
+
+export const getProdutosPorCategoria = async(id?: string) => {
+    const response = await api.get(`/produto/${id ? `?categoria_id=${id}` : ''}`);
+    return response.data;
+};
