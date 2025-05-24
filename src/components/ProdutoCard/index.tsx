@@ -74,7 +74,7 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto }) => {
 
         <CardBody>
             <VStack align="start">
-            <Text fontWeight="bold" fontSize="lg" color="gray.800">
+            <Text fontWeight="bold" fontSize="lg" color="gray.800" h={"50px"}>
                 {produto.produto_nome}
             </Text>
 
