@@ -20,6 +20,7 @@ const Banner = () => {
   }, []);
 
   const getSlidePercentage = () => {
+    if(typeof window === 'undefined') return
     const width = window.innerWidth;
     if (width <= 480) return 100;
     if (width <= 768) return 50;
@@ -30,6 +31,7 @@ const Banner = () => {
   
   useEffect(() => {
     const handleResize = () => {
+      
       setSlidePercentage(getSlidePercentage());
     };
     window.addEventListener("resize", handleResize);

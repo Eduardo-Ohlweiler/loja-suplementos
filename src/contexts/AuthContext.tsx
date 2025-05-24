@@ -31,8 +31,16 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 try {
                     const response = await getUser(Number(userId));
                     setUser(response);
-                } catch (error) {
-                    console.error("Erro ao carregar o usuário:", error);
+                } catch (error: any) {
+                    if(error.response.status === 401) 
+                    {
+                        setUser(null);
+                        localStorage.clear();
+                        localStorage.removeItem("@token");
+                        localStorage.removeItem("@userId");
+                        setToken(null);
+                        setIsLoged(false);
+                    }
                 }
             }
         };
@@ -46,7 +54,16 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             toast.success("Usuário cadastrado com sucesso!");
             router.push("/login");
         } catch (error: any) {
-            toast.error(error.response?.data || "Erro desconhecido ao cadastrar usuário");
+            if(error.response.status === 401) 
+            {
+                setUser(null);
+                localStorage.clear();
+                localStorage.removeItem("@token");
+                localStorage.removeItem("@userId");
+                setToken(null);
+                setIsLoged(false);
+            }
+                
         }
     };
 
@@ -64,6 +81,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             router.push("/");
         } catch (error: any) {
             toast.error(error.response?.data || "Erro desconhecido ao realizar login");
+            setUser(null);
+            localStorage.clear();
+            localStorage.removeItem("@token");
+            localStorage.removeItem("@userId");
+            setToken(null);
+            setIsLoged(false);
         }
     };
 
