@@ -70,7 +70,7 @@ const ButtonUser = () => {
 
                   <Menu.Item
                       value="login"
-                      onClick={logoutUser}
+                      onClick={() => logoutUser()}
                       _hover={{ bg: "gray.100" }}
                       _focus={{ boxShadow: "none", outline: "none" }}
                       color="black"

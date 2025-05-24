@@ -44,7 +44,7 @@ export default function Register() {
 
     const onFormSubmit = ({ nome, email, password, telefone, endereco }: UserFormData) => {
         if (isLoged && user) {
-            const updatedUserData: UpdateUserData = { nome, email, password, telefone, endereco };
+            const updatedUserData: UpdateUserData = { id: user.id, nome, email, password, telefone, endereco };
             updateUserProfile(updatedUserData);
         } else {
             registerUser({ nome, email, password, telefone, endereco });

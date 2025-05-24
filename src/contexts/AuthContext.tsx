@@ -17,6 +17,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
 
     useEffect(() => {
+        if (typeof window === "undefined") return;
         const storedToken = localStorage.getItem("@token");
         const userId = localStorage.getItem("@userId");
 
