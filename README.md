@@ -1,4 +1,4 @@
-Para que seja possivel visiualizar o projeto na integra, disponibilizei a api que desenvolvi, precisa-se fazer o clone da api no link a seguir, após executar a aplicação, e então com o servidor rodando pode rodar o projeto e ver seu conteudo e funcionalidades
+Para que seja possivel visiualizar o projeto na integra, disponibilizei a api que desenvolvi, precisa-se fazer o clone da api no link a seguir, após executar a aplicação, e então com o servidor rodando pode-se rodar o projeto e ver seu conteudo e funcionalidades
 Link do repositorio da api: https://github.com/Eduardo-Ohlweiler/loja_suplementos_api
 
 
