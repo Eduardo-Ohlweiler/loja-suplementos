@@ -155,7 +155,7 @@ const Finalizar = () => {
                     {cart.length > 0 ? (
                         cart.map((item, index) => (
                         <Text key={index}>
-                            {item.produto_nome} - {item.quantidade}x R$ {item.valor.toFixed(2).replace(".", ",")}
+                            {item.produtoNome} - {item.quantidade}x R$ {item.valor.toFixed(2).replace(".", ",")}
                         </Text>
                         ))
                     ) : (

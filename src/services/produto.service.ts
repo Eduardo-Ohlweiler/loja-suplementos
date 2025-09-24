@@ -9,6 +9,7 @@ export const getCategorias = async() => {
 export const getProdutos = async() => {
 
     const response = await api.get('/produto');
+    console.log(response.data)
     return response.data;
 }
 
@@ -19,11 +20,11 @@ export const getObjetivos = async() => {
 }
 
 export const getProdutosPorObjetivo = async(id?: string) => {
-    const response = await api.get(`/produto/${id ? `?objetivo_id=${id}` : ''}`);
+    const response = await api.get(`/produto/${id ? `?objetivoId=${id}` : ''}`);
     return response.data;
 };
 
 export const getProdutosPorCategoria = async(id?: string) => {
-    const response = await api.get(`/produto/${id ? `?categoria_id=${id}` : ''}`);
+    const response = await api.get(`/produto/${id ? `?categoriaId=${id}` : ''}`);
     return response.data;
 };

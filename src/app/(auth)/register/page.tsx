@@ -29,6 +29,8 @@ export default function Register() {
     });
     
     useEffect(() => {
+        console.log(user);
+        console.log(isLoged)
         if (user && isLoged) {
             reset({
                 nome: user.nome || "",
@@ -56,7 +58,7 @@ export default function Register() {
         if (!user) return; 
     
         try {
-            const response = await api.put(`/users/${user.id}`, updatedUserData); 
+            const response = await api.patch(`/usuario/${user.id}`, updatedUserData); 
             toast.success("Perfil atualizado com sucesso!");
             setUser(response.data.user); 
         } catch (error) {

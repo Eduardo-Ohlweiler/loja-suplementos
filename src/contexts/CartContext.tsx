@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
 import { CartContextInterface, CartItem } from "@/types/cart";
+import { postPedido } from "@/services/pedido.service";
 
 const CartContext = createContext<CartContextInterface>({} as CartContextInterface);
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const { isLoged } = useAuth();
+  const { isLoged, token } = useAuth();
   const router = useRouter();
   const [cart, setCart] = useState<CartItem[]>([]);
 
@@ -85,8 +86,8 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
-  const proceedToCheckout = () => {
-    if (!isLoged) {
+  const proceedToCheckout = async () => {
+    if (!isLoged || !token) {
       toast.warning("Você precisa estar logado para finalizar a compra.");
       router.push("/login");
       return;
@@ -101,14 +102,21 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
       toast.warning("Seu carrinho está vazio ou não tem itens válidos.");
       return;
     }
-
+/*
     const query = new URLSearchParams({
       total: total.toFixed(2),
       cart: JSON.stringify(cart),
-    }).toString();
+    }).toString();*/
 
     toast.success("Prosseguindo para finalização da compra!");
-    router.push(`/finalizar?${query}`);
+    //router.push(`/finalizar?${query}`);
+    const response = await postPedido (token, cart.map(item => ({
+      produtoId:      item.id,
+      quantidade:     item.quantidade,
+      valorDesconto:  0,
+      valorAcrescimo: 0
+    })));
+    window.location.href = response;
   };
   
 

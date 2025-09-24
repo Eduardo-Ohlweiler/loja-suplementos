@@ -4,18 +4,18 @@ import { LoginUserData, RegisterUserData } from "@/types/auth";
 
 export const registerUserService = async(data: RegisterUserData) => {
 
-    const response = await api.post('/register', data);
+    const response = await api.post('/auth/create', data);
     return response.data;
 }
 
 export const loginUserService = async(data: LoginUserData) => {
 
-    const response = await api.post('/login', data);
+    const response = await api.post('/auth/login', data);
     return response.data;
 }
 
 export const getUser = async(id: number) => {
 
-    const response = await api.get(`/users/${id}`);
+    const response = await api.get(`/usuario/${id}`);
     return response.data;
 }

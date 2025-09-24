@@ -13,20 +13,18 @@ import {
   import { FaShoppingCart } from "react-icons/fa";
 import CartCards from "../CartCards";
 import { useCart } from "@/contexts/CartContext";
-import { Classificacao } from "@/types/produto/classificacao";
-import { Objetivo } from "@/types/produto/objetivo";
-import { useEffect, useState } from "react";
-import { getCategorias, getObjetivos } from "@/services/produto.service";
+import { useAuth } from "@/contexts/AuthContext";
+
   
   const Cart = () => {
-      const [categorias, setCategorias] = useState<Classificacao[]>([]);
-      const [objetivos, setObjetivos]   = useState<Objetivo[]>([]);
-      const { cart, proceedToCheckout } = useCart();
+      //const [categorias, setCategorias] = useState<Classificacao[]>([]);
+      //const [objetivos, setObjetivos]   = useState<Objetivo[]>([]);
+      const { cart, proceedToCheckout } = useCart();    
 
   const total = cart.reduce((sum, item) => sum + item.valor * item.quantidade, 0);
   const totalItems = cart.reduce((total, item) => total + item.quantidade, 0);
 
-  const fetchCategorias = async() => {
+  /*const fetchCategorias = async() => {
           const categorias = await getCategorias();
           setCategorias(categorias);
       }
@@ -39,7 +37,7 @@ import { getCategorias, getObjetivos } from "@/services/produto.service";
       useEffect(() => {
               fetchCategorias();
               fetchObjetivos();
-          }, []);
+          }, []);*/
     return (
       <HStack wrap="wrap">
         <Drawer.Root >
@@ -82,7 +80,7 @@ import { getCategorias, getObjetivos } from "@/services/produto.service";
                              boxShadow={"xl"}
                              
                 >
-                  <CartCards categorias={categorias} objetivos={objetivos} />
+                  <CartCards />
                 </Drawer.Body>
                 <Drawer.Footer backgroundColor={"white"}
                                boxShadow="0px 40px 120px rgba(0, 0, 0, 0.9)"

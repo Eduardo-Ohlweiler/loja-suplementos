@@ -71,7 +71,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const loginUser = async (data: LoginUserData) => {
         try {
             const response = await loginUserService(data);
-
             localStorage.setItem("@token", response.accessToken);
             localStorage.setItem("@userId", response.user.id.toString());
 

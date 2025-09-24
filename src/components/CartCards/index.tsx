@@ -3,13 +3,12 @@ import { useCart } from "@/contexts/CartContext";
 import {  Box, Button, Card, Flex, Image, Text } from "@chakra-ui/react";
 import { FaTrash } from "react-icons/fa";
 import ProductWindow from "../ProductWindow";
-import { CartCardsProps } from "@/types/cart";
 
-const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
+const CartCards:React.FC = () => {
     const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
 
 
-
+/*
     const getCategoriaNome = (categoriaId: number) => {
         const categoria = categorias.find(cat => cat.id === categoriaId);
         return categoria ? categoria.nome : "Categoria desconhecida";
@@ -19,7 +18,7 @@ const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
         const objetivo = objetivos.find(obj => obj.id === objetivoId);
         return objetivo ? objetivo.nome : "Objetivo desconhecido";
     };
-    
+    */
 
     return (
         <>
@@ -38,20 +37,20 @@ const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
                             h="100px"
                             minH={"90px"}
                             src={item.foto}
-                            alt={item.produto_nome}
+                            alt={item.produtoNome}
                         />
                         <ProductWindow 
                             produto={{
                             id: item.id,
-                            produto_nome: item.produto_nome,
+                            produtoNome: item.produtoNome,
                             descricao: item.descricao || "",
                             valor: item.valor,
                             foto: item.foto,
-                            categoria_id: item.categoria_id,
-                            objetivo_id: item.objetivo_id,
+                            categoria: item.categoria,
+                            objetivo: item.objetivo,
                             }}
-                            categoriaNome={getCategoriaNome(item.categoria_id)}
-                            objetivoNome={getObjetivoNome(item.objetivo_id)}
+                            //categoriaNome={getCategoriaNome(item.categoria)}
+                            //objetivoNome={getObjetivoNome(item.objetivo)}
                         />
                     </Flex>
                     
@@ -79,7 +78,7 @@ const CartCards:React.FC<CartCardsProps> = ({ categorias, objetivos }) => {
                                                 paddingTop={"8px"}
                             >
                                 <Flex h={"30px"} fontSize={"12px"} alignContent={"center"} alignItems={"center"}>
-                                    <Text >{item.produto_nome}</Text>
+                                    <Text >{item.produtoNome}</Text>
                                 </Flex>
                                 
                                 <Flex gap={2}>

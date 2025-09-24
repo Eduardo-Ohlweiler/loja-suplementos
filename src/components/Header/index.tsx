@@ -18,7 +18,7 @@ const Header = () => {
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value.toLowerCase();
     const filtered = products.filter((produto) =>
-      produto.produto_nome.toLowerCase().includes(query)
+      produto.produtoNome.toLowerCase().includes(query)
     );
     setFilteredProducts(filtered);
   };

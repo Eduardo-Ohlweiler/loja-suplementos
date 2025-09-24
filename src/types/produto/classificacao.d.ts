@@ -1,5 +1,5 @@
 
 export interface Classificacao {
-    id: number
-    categoria_nome: string
+    id:             number
+    categoriaNome:  string
 }

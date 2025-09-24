@@ -12,8 +12,6 @@ import {
   Card,
 } from "@chakra-ui/react";
 import ProductWindow from "../ProductWindow";
-import { useEffect, useState } from "react";
-import { getCategorias, getObjetivos } from "@/services/produto.service";
 
 interface ProdutoProps {
     produto: Produto;
@@ -23,13 +21,13 @@ interface ProdutoProps {
 
 const ProdutoCard: React.FC<ProdutoProps> = ({ produto }) => {
     const { addToCart } = useCart();
-    const [categorias, setCategorias] = useState<Classificacao[]>([]);
-    const [objetivos, setObjetivos] = useState<Objetivo[]>([]);
+    //const [categorias, setCategorias] = useState<Classificacao[]>([]);
+    //const [objetivos, setObjetivos] = useState<Objetivo[]>([]);
 
-    const categoria = categorias.find(cat => cat.id === produto.categoria_id);
-    const objetivo = objetivos.find(obj => obj.id === produto.objetivo_id);
+    //const categoria = categorias.find(cat => cat.id === produto.categoria_id);
+    //const objetivo = objetivos.find(obj => obj.id === produto.objetivo_id);
 
-    const fetchCategorias = async() => {
+    /*const fetchCategorias = async() => {
             const categorias = await getCategorias();
             setCategorias(categorias);
         }
@@ -42,7 +40,7 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto }) => {
         useEffect(() => {
             fetchCategorias();
             fetchObjetivos();
-        }, []);
+        }, []);*/
 
     const handleAddToCart = () => {
         const item = {
@@ -66,7 +64,7 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto }) => {
         >
         <Image
             src={produto.foto}
-            alt={produto.produto_nome}
+            alt={produto.produtoNome}
             objectFit="contain"
             w="100%"
             h="200px"
@@ -75,27 +73,22 @@ const ProdutoCard: React.FC<ProdutoProps> = ({ produto }) => {
         <CardBody>
             <VStack align="start">
             <Text fontWeight="bold" fontSize="lg" color="gray.800" h={"50px"}>
-                {produto.produto_nome}
+                {produto.produtoNome}
             </Text>
 
             <Text color="red.700" fontSize="lg" fontWeight="semibold">
                 R$ {produto.valor.toFixed(2).replace(".", ",")}
             </Text>
-            {categoria && (
-                <Text fontSize="sm" color="gray.700" fontWeight="medium">
-                Categoria: {categoria.categoria_nome}
-                </Text>
-            )}
+       
+            <Text fontSize="sm" color="gray.700" fontWeight="medium">
+                Categoria: {produto.categoria.categoriaNome}
+            </Text>
 
-            {objetivo && (
-                <Text fontSize="xs" color="gray.500">
-                Objetivo: {objetivo.objetivo_nome}
-                </Text>
-            )}
+            <Text fontSize="xs" color="gray.500">
+                Objetivo: {produto.objetivo.objetivoNome}
+            </Text>
 
             <ProductWindow  produto={produto}
-                            categoriaNome={categoria ? categoria.categoria_nome : ""}
-                            objetivoNome={objetivo ? objetivo.objetivo_nome : ""}
             />
 
             <Button backgroundColor={"red.700"} 

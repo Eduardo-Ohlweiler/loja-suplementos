@@ -1,5 +1,6 @@
 "use client";
 import { useCart } from "@/contexts/CartContext";
+import { CartItem } from "@/types/cart";
 import { ProductWindowProps } from "@/types/produtowindow";
 import {
   Button,
@@ -14,20 +15,20 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, objetivoNome}) => {
+const ProductWindow: React.FC<ProductWindowProps> = ({produto}) => {
   const [open, setOpen] = useState(false);
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
-    const item = {
-      id: produto.id,
-      produto_nome: produto.produto_nome,
-      valor: produto.valor,
-      quantidade: 1,
-      foto: produto.foto,
-      descricao: produto.descricao,
-      categoria_id: produto.categoria_id,
-      objetivo_id: produto.objetivo_id,
+    const item:CartItem = {
+      id:           produto.id,
+      produtoNome:  produto.produtoNome,
+      valor:        produto.valor,
+      quantidade:   1,
+      foto:         produto.foto,
+      descricao:    produto.descricao,
+      categoria:    produto.categoria,
+      objetivo:     produto.objetivo,
     };
     addToCart(item);
   };
@@ -70,7 +71,7 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
             >
               <Image
                 src={produto.foto}
-                alt={produto.produto_nome}
+                alt={produto.produtoNome}
                 objectFit="contain"
                 width="100%"
                 height="250px"
@@ -91,7 +92,7 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
                   }}
                   fontWeight="bold"
                 >
-                  {produto.produto_nome}
+                  {produto.produtoNome}
                 </Text>
                 <Box
                   maxH="140px"
@@ -117,10 +118,10 @@ const ProductWindow: React.FC<ProductWindowProps> = ({produto, categoriaNome, ob
                 </Box>
                 <Grid templateColumns="auto 1fr" gap={2} w="100%" mt="auto" >
                     <Text fontSize="18px" fontWeight="bold">Categoria:</Text>
-                    <Text fontSize="18px">{categoriaNome}</Text>
+                    <Text fontSize="18px">{produto.categoria.categoriaNome}</Text>
 
                     <Text fontSize="18px" fontWeight="bold">Objetivo:</Text>
-                    <Text fontSize="18px">{objetivoNome}</Text>
+                    <Text fontSize="18px">{produto.objetivo.objetivoNome}</Text>
 
                     <Text fontSize="18px" fontWeight="bold">Valor:</Text>
                     <Text fontSize="18px">R$ {produto.valor}</Text>

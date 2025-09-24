@@ -9,16 +9,16 @@ type FormaPagamento = {
 };
 
 type PagamentoContextType = {
-  formaSelecionada: FormaPagamento | null;
-  setFormaSelecionada: (forma: FormaPagamento) => void;
-  formasDisponiveis: FormaPagamento[];
+  formaSelecionada:   FormaPagamento | null;
+  setFormaSelecionada:  (forma: FormaPagamento) => void;
+  formasDisponiveis:  FormaPagamento[];
   setFormasDisponiveis: (formas: FormaPagamento[]) => void;
 };
 
 const PagamentoContext = createContext<PagamentoContextType>({} as PagamentoContextType);
 
 export const PagamentoProvider = ({ children }: { children: React.ReactNode }) => {
-  const [formaSelecionada, setFormaSelecionada] = useState<FormaPagamento | null>(null);
+  const [formaSelecionada,  setFormaSelecionada]  = useState<FormaPagamento | null>(null);
   const [formasDisponiveis, setFormasDisponiveis] = useState<FormaPagamento[]>([]);
 
   return (

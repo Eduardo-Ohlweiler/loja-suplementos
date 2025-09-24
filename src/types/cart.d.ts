@@ -14,7 +14,7 @@ export interface CartContextInterface {
   proceedToCheckout: () => void;
 }
 
-export interface CartCardsProps {
+/*export interface CartCardsProps {
   categorias: Classificacao[];
-  objetivos: Objetivo[];
-}
+  objetivos:  Objetivo[];
+}*/

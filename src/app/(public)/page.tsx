@@ -55,9 +55,9 @@ export default function Home() {
                 </Heading>
                 <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", xl: "repeat(4, 1fr)" }}
                       gap={2}>
-                    {produtosExibidos?.map((produto: Produto, index: number) => (
+                    {produtosExibidos?.map((produto: Produto) => (
                         <ProdutoCard
-                            key={produto.id+index}{...produto}
+                            key={`pd-${produto.id}`}{...produto}
                             produto={produto}
                             categorias={categorias}
                             objetivos={objetivos}

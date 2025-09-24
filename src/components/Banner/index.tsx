@@ -60,7 +60,7 @@ const Banner = () => {
         dynamicHeight={false}
       >
         {produtos.map((produto) => (
-          <Box key={produto.id} p={{ base: 1, sm: 2 }} w="100%">
+          <Box key={`bn-${produto.id}`} p={{ base: 1, sm: 2 }} w="100%">
             <ProdutoCard produto={produto} />
           </Box>
         ))}

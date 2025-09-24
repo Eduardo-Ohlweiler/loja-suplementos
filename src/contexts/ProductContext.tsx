@@ -15,7 +15,7 @@ type ProductContextType = {
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
-    const [products, setProducts] = useState<Produto[]>([]);
+    const [products,         setProducts]         = useState<Produto[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Produto[]>([]);
 
     useEffect(() => {

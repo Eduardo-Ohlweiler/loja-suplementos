@@ -10,7 +10,7 @@ import { IoMenu } from "react-icons/io5";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 
 const HeaderBottons = () => {
-    const [objetivos, setObjetivos] = useState<Objetivo[]>([]);
+    const [objetivos, setObjetivos]   = useState<Objetivo[]>([]);
     const [categorias, setCategorias] = useState<Classificacao[]>([]);
 
     const fetchCategorias = async() => {
