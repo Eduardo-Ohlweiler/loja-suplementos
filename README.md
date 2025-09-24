@@ -1,5 +1,5 @@
-Para que seja possivel visiualizar o projeto na integra, disponibilizei a api de testes em meu repositorio, precisa-se fazer o clone da api do link a seguir e rodar o comando npm install, após rode no git node server.js, e então com o servidor rodando pode rodar o projeto e ver seu conteudo e funcionalidades
-Link do repositorio da api: https://github.com/Eduardo-Ohlweiler/api_teste.git
+Para que seja possivel visiualizar o projeto na integra, disponibilizei a api que desenvolvi, precisa-se fazer o clone da api no link a seguir, após executar a aplicação, e então com o servidor rodando pode rodar o projeto e ver seu conteudo e funcionalidades
+Link do repositorio da api: https://github.com/Eduardo-Ohlweiler/loja_suplementos_api
 
 
 
