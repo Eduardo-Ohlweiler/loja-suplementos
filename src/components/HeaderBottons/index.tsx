@@ -72,8 +72,8 @@ const HeaderBottons = () => {
                                         <Menu.ItemGroupLabel>COMPRE POR OBJETIVO</Menu.ItemGroupLabel>
                                         {
                                             objetivos?.map((link, index) => (
-                                                <Menu.Item key={index + link.objetivo_nome} value={link.objetivo_nome} color={"black"} fontSize={"14px"}>
-                                                    <Link href = {`/objetivos/${link.id}`} >{link.objetivo_nome}</Link>
+                                                <Menu.Item key={index + link.objetivoNome} value={link.objetivoNome} color={"black"} fontSize={"14px"}>
+                                                    <Link href = {`/objetivos/${link.id}`} >{link.objetivoNome}</Link>
                                                 </Menu.Item>
                                             ))
                                         }
@@ -82,8 +82,8 @@ const HeaderBottons = () => {
                                         <Menu.ItemGroupLabel>COMPRE POR CATEGORIA</Menu.ItemGroupLabel>
                                         {
                                             categorias?.map((link, index) => (
-                                                <Menu.Item key={index + link.categoria_nome} value={link.categoria_nome} color={"black"} fontSize={"14px"}>
-                                                    <Link href = {`/categorias/${link.id}`} >{link.categoria_nome}</Link>
+                                                <Menu.Item key={index + link.categoriaNome} value={link.categoriaNome} color={"black"} fontSize={"14px"}>
+                                                    <Link href = {`/categorias/${link.id}`} >{link.categoriaNome}</Link>
                                                 </Menu.Item>
                                             ))
                                         }

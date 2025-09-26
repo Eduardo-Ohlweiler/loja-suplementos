@@ -82,7 +82,7 @@ export default function Objetivos() {
                         whiteSpace="normal"
                         textAlign="left"
                     >
-                        {categoria.categoria_nome}
+                        {categoria.categoriaNome}
                     </Button>
                 ))}
             </Box>

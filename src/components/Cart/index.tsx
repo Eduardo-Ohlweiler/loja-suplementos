@@ -13,7 +13,6 @@ import {
   import { FaShoppingCart } from "react-icons/fa";
 import CartCards from "../CartCards";
 import { useCart } from "@/contexts/CartContext";
-import { useAuth } from "@/contexts/AuthContext";
 
   
   const Cart = () => {

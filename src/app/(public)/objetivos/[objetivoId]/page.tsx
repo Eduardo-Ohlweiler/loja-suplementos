@@ -82,7 +82,7 @@ export default function Objetivos() {
                         whiteSpace="normal"
                         textAlign="left"
                     >
-                        {objetivo.objetivo_nome}
+                        {objetivo.objetivoNome}
                     </Button>
                 ))}
             </Box>

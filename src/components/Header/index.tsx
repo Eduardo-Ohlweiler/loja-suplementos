@@ -81,8 +81,8 @@ const Header = () => {
                     <Menu.ItemGroupLabel fontSize={"14px"}>COMPRE POR OBJETIVO</Menu.ItemGroupLabel>
                     {
                       objetivos?.map((link, index) => (
-                        <Menu.Item key={index + link.objetivo_nome} value={link.objetivo_nome} fontSize={"14px"} color={"black"}>
-                            <Link href = {`/objetivos/${link.id}`} >{link.objetivo_nome}</Link>
+                        <Menu.Item key={index + link.objetivoNome} value={link.objetivoNome} fontSize={"14px"} color={"black"}>
+                            <Link href = {`/objetivos/${link.id}`} >{link.objetivoNome}</Link>
                         </Menu.Item>
                       ))
                     }
@@ -91,8 +91,8 @@ const Header = () => {
                     <Menu.ItemGroupLabel fontSize={"14px"}>COMPRE POR CATEGORIA</Menu.ItemGroupLabel>
                     {
                       categorias?.map((link, index) => (
-                        <Menu.Item key={index + link.categoria_nome} value={link.categoria_nome} fontSize={"14px"} color={"black"}>
-                            <Link href = {`/categorias/${link.id}`} >{link.categoria_nome}</Link>
+                        <Menu.Item key={index + link.categoriaNome} value={link.categoriaNome} fontSize={"14px"} color={"black"}>
+                            <Link href = {`/categorias/${link.id}`} >{link.categoriaNome}</Link>
                         </Menu.Item>
                       ))
                     }
